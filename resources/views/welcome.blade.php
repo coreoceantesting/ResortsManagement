@@ -15,7 +15,7 @@
             }
 
             .bg-img{
-                background-image: url('https://pmc.maharts.com/admin/images/login/desktop-curve-image.jpg');
+                background-image: url('{{ asset("admin/images/resort.jpg") }}');
                 background-repeat: no-repeat;
                 background-position: 0%;
                 background-size: cover;
@@ -153,9 +153,9 @@
                        
                         <div class="container custompadding"> 
                                 <div class="row"> 
-                                    <div class="col-md-6  mx-5 ">
+                                    <div class="col-md-6   ">
                                         <div class="card custom-card">
-                                            <img class="card-img-top" src="{{ asset('admin/images/couple.jpg') }}" alt="Couple">
+                                            <img class="card-img-top" src="{{ asset('admin/images/couple.jpg') }}" alt="Couple" style="height: 225px;" >
                                             <div class="card-body">
                                                 <a href="{{ route('couple.index') }}" class="btn btn-primary">Couple</a>
                                             </div>
@@ -165,9 +165,9 @@
                             
                               <!-- Second Row of Cards -->
                               <div class="row"> 
-                                    <div class="col-md-6 py-5 mx-5 ">
+                                    <div class="col-md-6 py-3 ">
                                         <div class="card custom-card">
-                                            <img class="card-img-top" src="{{ asset('admin/images/group.jpg') }}" alt="group">
+                                            <img class="card-img-top" src="{{ asset('admin/images/group.jpg') }}" alt="group" >
                                             <div class="card-body">
                                                 <a href="{{ route('group.index') }}" class="btn btn-primary">Group</a>
                                             </div>

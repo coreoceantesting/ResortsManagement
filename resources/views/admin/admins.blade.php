@@ -1,6 +1,6 @@
 <x-admin.layout>
-    <x-slot name="title">Users</x-slot>
-    <x-slot name="heading">Users</x-slot>
+    <x-slot name="title">Admins</x-slot>
+    <x-slot name="heading">Admins</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
 
@@ -11,7 +11,7 @@
                 <form class="theme-form" name="addForm" id="addForm">
                     @csrf
                     <div class="card-header pb-0">
-                        <h4>Create User</h4>
+                        <h4>Create Admin</h4>
                     </div>
                     <div class="card-body pt-0">
 
@@ -19,26 +19,26 @@
                         <div class="mb-3 row">
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label" for="name">User Name <span class="text-danger">*</span></label>
-                                <input class="form-control" id="name" name="name" type="text" placeholder="Enter User Name">
+                                <label class="col-form-label" for="name">Admin Name <span class="text-danger">*</span></label>
+                                <input class="form-control" id="name" name="name" type="text" placeholder="Enter Admin Name">
                                 <span class="text-danger is-invalid name_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label" for="email">User Email <span class="text-danger">*</span></label>
-                                <input class="form-control" id="email" name="email" type="email" placeholder="Enter User Email">
+                                <label class="col-form-label" for="email">Admin Email <span class="text-danger">*</span></label>
+                                <input class="form-control" id="email" name="email" type="email" placeholder="Enter Admin Email">
                                 <span class="text-danger is-invalid email_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label" for="mobile">User Mobile <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="mobile">Admin  Mobile <span class="text-danger">*</span></label>
                                 <input class="form-control" id="mobile" name="mobile" type="number" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-                                    placeholder="Enter User Mobile">
+                                    placeholder="Enter Admin  Mobile">
                                 <span class="text-danger is-invalid mobile_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label" for="role">Select User Type / Role <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="role">Select Admin  Type / Role <span class="text-danger">*</span></label>
                                 <select class="js-example-basic-single col-sm-12" id="role" name="role">
                                     <option value="">--Select Role--</option>
                                     @foreach ($roles as $role)
@@ -79,7 +79,7 @@
                 @csrf
                 <section class="card">
                     <header class="card-header">
-                        <h4 class="card-title">Edit User</h4>
+                        <h4 class="card-title">EditAdmin </h4>
                     </header>
 
                     <div class="card-body py-2">
@@ -89,26 +89,26 @@
                         <div class="mb-3 row">
 
                             <div class="col-md-4">
-                                <label class="col-form-label" for="name">User Name <span class="text-danger">*</span></label>
-                                <input class="form-control" name="name" type="text" placeholder="Enter User Name">
+                                <label class="col-form-label" for="name">Admin  Name <span class="text-danger">*</span></label>
+                                <input class="form-control" name="name" type="text" placeholder="EnterAdmin  Name">
                                 <span class="text-danger is-invalid name_err"></span>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="col-form-label" for="email">User Email <span class="text-danger">*</span></label>
-                                <input class="form-control" name="email" type="email" placeholder="Enter User Email">
+                                <label class="col-form-label" for="email">Admin  Email <span class="text-danger">*</span></label>
+                                <input class="form-control" name="email" type="email" placeholder="Enter Admin  Email">
                                 <span class="text-danger is-invalid email_err"></span>
                             </div>
 
                             <div class="col-md-4">
-                                <label class="col-form-label" for="mobile">User Mobile <span class="text-danger">*</span></label>
+                                <label class="col-form-label" for="mobile">Admin  Mobile <span class="text-danger">*</span></label>
                                 <input class="form-control" name="mobile" type="number" min="0" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
-                                    placeholder="Enter User Mobile">
+                                    placeholder="Enter Admin  Mobile">
                                 <span class="text-danger is-invalid mobile_err"></span>
                             </div>
 
                             <div class="col-md-4 mt-3">
-                                <label class="col-form-label">Select User Type / Role <span class="text-danger">*</span></label>
+                                <label class="col-form-label">Select Admin  Type / Role <span class="text-danger">*</span></label>
                                 <select class="js-example-basic-single col-sm-12" name="role">
                                     <option value="">--Select Role--</option>
                                     @foreach ($roles as $role)
@@ -159,26 +159,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($admins as $admin)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td>{{ $user->mobile }}</td>
+                                        <td>{{ $admin->name }}</td>
+                                        <td>{{ $admin->email }}</td>
+                                        <td>{{ $admin->mobile }}</td>
                                         {{-- <td>
                                             <div class="media-body text-end icon-state">
                                                 <label class="switch">
-                                                    <input type="checkbox" class="status" data-id="{{ $user->id }}" {{ $user->active_status == '1' ? 'checked' : '' }}><span class="switch-state"></span>
+                                                    <input type="checkbox" class="status" data-id="{{ $admin->id }}" {{ $user->active_status == '1' ? 'checked' : '' }}><span class="switch-state"></span>
                                                 </label>
                                             </div>
                                         </td> --}}
                                         <td>
-                                            {{ \Carbon\Carbon::parse($user->created_at)->format('d M, y h:i:s') }}
+                                            {{ \Carbon\Carbon::parse($admin->created_at)->format('d M, y h:i:s') }}
                                         </td>
                                         <td>
-                                            <button class="edit-element btn text-primary px-2 py-1" title="Edit User" data-id="{{ $user->id }}"><i data-feather="edit"></i></button>
-                                            <button class="btn text-primary change-password px-2 py-1" title="Change Password" data-id="{{ $user->id }}"><i data-feather="lock"></i></button>
-                                            <button class="btn text-warning assign-role px-2 py-1" title="Assign Role" data-id="{{ $user->id }}"><i data-feather="user-check"></i></button>
+                                            <button class="edit-element btn text-primary px-2 py-1" title="Edit Admin" data-id="{{ $admin->id }}"><i data-feather="edit"></i></button>
+                                            <button class="btn text-primary change-password px-2 py-1" title="Change Password" data-id="{{ $admin->id }}"><i data-feather="lock"></i></button>
+                                            <button class="btn text-warning assign-role px-2 py-1" title="Assign Role" data-id="{{ $admin->id }}"><i data-feather="admin-check"></i></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -203,7 +203,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <input type="hidden" id="user_id" name="user_id" value="">
+                        <input type="hidden" id="admin_id" name="admin_id" value="">
 
                         <div class="col-8 mx-auto my-2">
                             <div class="form-group">
@@ -250,12 +250,12 @@
                     </div>
                     <div class="modal-body">
 
-                        <input type="hidden" id="role_user_id" name="role_user_id" value="">
+                        <input type="hidden" id="role_admin_id" name="role_admin_id" value="">
 
                         <div class="mb-3 row">
-                            <label class="col-sm-3 col-form-label" for="name">User Name : </label>
+                            <label class="col-sm-3 col-form-label" for="name">Admin Name : </label>
                             <div class="col-sm-9">
-                                <h6 id="role_user_name" class="pt-2"></h6>
+                                <h6 id="role_admin_name" class="pt-2"></h6>
                             </div>
                         </div>
 
@@ -287,7 +287,7 @@
     $("#buttons-datatables").on("change", ".status", function(e) {
         e.preventDefault();
         var model_id = $(this).attr("data-id");
-        var url = "{{ route('users.toggle', ':model_id') }}";
+        var url = "{{ route('admins.toggle', ':model_id') }}";
 
         $.ajax({
             url: url.replace(':model_id', model_id),
@@ -322,7 +322,7 @@
 
         var formdata = new FormData(this);
         $.ajax({
-            url: '{{ route('users.store') }}',
+            url: '{{ route("admins.store") }}',
             type: 'POST',
             data: formdata,
             contentType: false,
@@ -332,7 +332,7 @@
                 if (!data.error2)
                     swal("Successful!", data.success, "success")
                     .then((action) => {
-                        window.location.href = '{{ route('users.index') }}';
+                        window.location.href = '{{ route("admins.index") }}';
                     });
                 else
                     swal("Error!", data.error2, "error");
@@ -358,8 +358,8 @@
 <script>
     $("#buttons-datatables").on("click", ".change-password", function(e) {
         e.preventDefault();
-        var user_id = $(this).attr("data-id");
-        $('#user_id').val(user_id);
+        var admin_id = $(this).attr("data-id");
+        $('#admin_id').val(admin_id);
         $('#change-password-modal').modal('show');
     });
 </script>
@@ -372,8 +372,8 @@
 
         var formdata = new FormData(this);
         formdata.append('_method', 'PUT');
-        var model_id = $('#user_id').val();
-        var url = "{{ route('users.change-password', ':model_id') }}";
+        var model_id = $('#admin_id').val();
+        var url = "{{ route('admins.change-password', ':model_id') }}";
 
         $.ajax({
             url: url.replace(':model_id', model_id),
@@ -433,7 +433,7 @@
         e.preventDefault();
         // $(".edit-element").show();
         var model_id = $(this).attr("data-id");
-        var url = "{{ route('users.edit', ':model_id') }}";
+        var url = "{{ route('admins.edit', ':model_id') }}";
 
         $.ajax({
             url: url.replace(':model_id', model_id),
@@ -474,7 +474,7 @@
             var formdata = new FormData(this);
             formdata.append('_method', 'PUT');
             var model_id = $('#edit_model_id').val();
-            var url = "{{ route('users.update', ':model_id') }}";
+            var url = "{{ route('admins.update', ':model_id') }}";
             //
             $.ajax({
                 url: url.replace(':model_id', model_id),
@@ -487,7 +487,7 @@
                     if (!data.error2)
                         swal("Successful!", data.success, "success")
                         .then((action) => {
-                            window.location.href = '{{ route('users.index') }}';
+                            window.location.href = '{{ route("admins.index") }}';
                         });
                     else
                         swal("Error!", data.error2, "error");
@@ -515,8 +515,8 @@
     $("#buttons-datatables").on("click", ".assign-role", function(e) {
         e.preventDefault();
         var model_id = $(this).attr("data-id");
-        var url = "{{ route('users.get-role', ':model_id') }}";
-        $('#role_user_id').val(model_id);
+        var url = "{{ route('admins.get-role', ':model_id') }}";
+        $('#role_admin_id').val(model_id);
 
         $.ajax({
             url: url.replace(':model_id', model_id),
@@ -529,7 +529,7 @@
                 if (!data.error) {
                     $("#editForm input[name='edit_model_id']").val(data.user.id);
                     $("#edit_role").html(data.roleHtml);
-                    $("#role_user_name").text(data.user.name);
+                    $("#role_admin_name").text(data.user.name);
                 } else {
                     swal("Error!", data.error, "error");
                 }
@@ -551,8 +551,8 @@
 
         var formdata = new FormData(this);
         formdata.append('_method', 'PUT');
-        var model_id = $('#role_user_id').val();
-        var url = "{{ route('users.assign-role', ':model_id') }}";
+        var model_id = $('#role_admin_id').val();
+        var url = "{{ route('admins.assign-role', ':model_id') }}";
 
         $.ajax({
             url: url.replace(':model_id', model_id),

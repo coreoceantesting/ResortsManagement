@@ -32,26 +32,31 @@
                     <span data-key="t-menu">Menu</span>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link menu-link" href="#" >
                         <i class="ri-dashboard-2-line"></i>
                         <span data-key="t-dashboards">Dashboard</span>
                     </a>
-                </li>
+                </li> -->
 
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                @if(!Route::is('couple.index') && !Route::is('group.index') && !Route::is('couple.show') && !Route::is('group.show'))
+                <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
                         <i class="ri-layout-3-line"></i>
                         <span data-key="t-layouts">Masters</span>
                     </a>
+                    @endif
                     <div class="collapse menu-dropdown" id="sidebarLayouts">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('couple.index') }}" class="nav-link" data-key="t-horizontal">Couple</a>
+                                <a href="{{route('dashboard')}}" class="nav-link" data-key="t-horizontal">Pending Booking</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('group.index') }}" class="nav-link" data-key="t-horizontal">Group</a>
+                                <a href="{{route('bookingApproved_dashboard')}}" class="nav-link" data-key="t-horizontal">Confirm Booking</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('bookingRejected_dashboard')}}" class="nav-link" data-key="t-horizontal">Cancle Booking</a>
                             </li>
                         </ul>
                     </div>

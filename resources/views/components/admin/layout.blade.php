@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" data-bs-theme="{{ $themeMode }}" data-body-image="img-1" data-preloader="enable" data-sidebar-visibility="show" data-layout-style="default"
+<html lang="en" data-layout="horizontal" data-topbar="dark" data-sidebar="dark" data-sidebar-size="lg" data-bs-theme="{{ $themeMode }}" data-body-image="img-1" data-preloader="enable" data-sidebar-visibility="show" data-layout-style="default"
     data-layout-width="fluid" data-layout-position="fixed">
 
 <head>
@@ -33,11 +33,10 @@
 <body>
 
     <div id="layout-wrapper">
-        <x-admin.header />
 
+    <x-admin.header />
 
         <x-admin.sidebar />
-
 
         <div class="main-content">
             <div class="page-content">
@@ -52,7 +51,7 @@
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item">
-                                            <a href="#">Home</a>
+                                            <a href="{{ route('home') }}">Home</a>
                                         </li>
                                         <li class="breadcrumb-item {{ isset($subheading) ? '' : 'active' }}">
                                             {{ $heading }}
@@ -196,4 +195,61 @@
 
 @stack('scripts')
 
+
+<style>
+        /* General table responsiveness */
+    .table {
+        width: 100%;
+        table-layout: auto;
+    }
+
+    /* For small screens (mobile devices) */
+    @media (max-width: 767px) {
+        .table th, .table td {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .table th {
+            background-color: #f8f9fa;
+            text-align: left;
+            padding: 8px;
+        }
+
+        .table td {
+            padding: 8px 15px;
+            border-top: 1px solid #ddd;
+        }
+
+        .table td:before {
+            content: attr(data-label);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .table {
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+    }
+
+    /* For medium screens (tablets) */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .table {
+            font-size: 14px;
+        }
+    }
+
+    /* For large screens (desktops) */
+    @media (min-width: 1025px) {
+        .table {
+            font-size: 16px;
+        }
+    }
+
+</style>
+
 </html>
+

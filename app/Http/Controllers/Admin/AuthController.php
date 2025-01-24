@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -50,20 +50,20 @@ class AuthController extends Controller
 
             try
             {
-                $user = User::where('email', $username)->first();
+                $admin = Admin::where('email', $username)->first();
 
-                if(!$user)
+                if(!$admin)
                     return response()->json(['error2'=> 'No user found with this username']);
 
-                if($user->active_status == '0' && !$user->roles)
+                if($admin->active_status == '0' && !$admin->roles)
                     return response()->json(['error2'=> 'You are not authorized to login, contact HOD']);
 
                 if(!auth()->attempt(['email' => $username, 'password' => $password], $remember_me))
                     return response()->json(['error2'=> 'Your entered credentials are invalid']);
 
                 $userType = '';
-                if( $user->hasRole(['User']) )
-                    $userType = 'user';
+                if( $admin->hasRole(['Admin']) )
+                    $userType = 'admin';
 
                 return response()->json(['success'=> 'login successful', 'user_type'=> $userType ]);
             }
@@ -109,11 +109,11 @@ class AuthController extends Controller
 
             try
             {
-                $user = DB::table('users')->where('id', $request->user()->id)->first();
+                $admin = DB::table('admins')->where('id', $request->admin()->id)->first();
 
-                if( Hash::check($old_password, $user->password) )
+                if( Hash::check($old_password, $admin->password) )
                 {
-                    DB::table('users')->where('id', $request->user()->id)->update(['password'=> Hash::make($password)]);
+                    DB::table('admins')->where('id', $request->admin()->id)->update(['password'=> Hash::make($password)]);
 
                     return response()->json(['success'=> 'Password changed successfully!']);
                 }
@@ -143,7 +143,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {        
 
-            $user = User::create([
+            $admin = Admin::create([
                 'name'=>$request->name,
                 'mobile'=>$request->mobile,
                 'email' => $request->email,
@@ -211,7 +211,7 @@ class AuthController extends Controller
               return back()->withInput()->with('error', 'Invalid token!');
           }
   
-          $user = User::where('email', $request->email)
+          $admin = Admin::where('email', $request->email)
                       ->update(['password' => Hash::make($request->password)]);
  
           DB::table('password_reset_tokens')->where(['email'=> $request->email])->delete();

@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BankController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +14,8 @@ use App\Http\Controllers\BankController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->get('/admin', function (Request $request) {
+    return $request->admin();
 });
 
-Route::post('/api/bank/import', [BankController::class, 'import']);
+

@@ -12,7 +12,7 @@ class GroupController extends Controller
    
     public function index()
     {
-       return view('admin.masters.group');
+       return view('admin.masters.group')->with('showSidebar', false);
     }
 
   

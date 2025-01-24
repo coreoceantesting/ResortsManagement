@@ -30,7 +30,7 @@
                             <div class="row g-0">
                                 <div class="col-lg-6">
                                     <div class="p-lg-5 p-4 auth-one-bg h-100">
-                                        <div class="bg-overlay"></div>
+                                        
                                         <div class="position-relative h-100 d-flex flex-column">
                                             <div class="mb-4">
                                                 <a href="index.html" class="d-block">
@@ -38,31 +38,7 @@
                                                         height="18">
                                                 </a>
                                             </div>
-                                            <div class="mt-auto">
-                                                <div class="mb-3">
-                                                    <i class="ri-double-quotes-l display-4 text-success"></i>
-                                                </div>
-
-                                                <div id="qoutescarouselIndicators" class="carousel slide"
-                                                    data-bs-ride="carousel">
-                                                    <div class="carousel-indicators">
-                                                        <button type="button" data-bs-target="#qoutescarouselIndicators"
-                                                            data-bs-slide-to="0" class="active" aria-current="true"
-                                                            aria-label="Slide 1"></button>
-                                                        <button type="button" data-bs-target="#qoutescarouselIndicators"
-                                                            data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                                        <button type="button" data-bs-target="#qoutescarouselIndicators"
-                                                            data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                                    </div>
-                                                    <div class="carousel-inner text-center text-white pb-5">
-                                                        @foreach ($quotes as $quote)
-                                                        <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                                            <p class="fs-15 fst-italic">{!! $quote !!}</p>
-                                                        </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +148,7 @@ $("#loginForm").submit(function(e) {
     $("#loginForm_submit").prop('disabled', true);
     var formdata = new FormData(this);
     $.ajax({
-        url: '',
+        url: "{{ route('signin') }}",
         type: 'POST',
         data: formdata,
         contentType: false,

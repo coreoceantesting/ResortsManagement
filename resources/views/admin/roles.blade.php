@@ -156,7 +156,7 @@
 
         var formdata = new FormData(this);
         $.ajax({
-            url: '{{ route('roles.store') }}',
+            url: '{{ route("roles.store") }}',
             type: 'POST',
             data: formdata,
             contentType: false,
@@ -166,7 +166,7 @@
                 if (!data.error2)
                     swal("Successful!", data.success, "success")
                     .then((action) => {
-                        window.location.href = '{{ route('roles.index') }}';
+                        window.location.href = '{{ route("roles.index") }}';
                     });
                 else
                     swal("Error!", data.error2, "error");
@@ -243,7 +243,7 @@
                     if (!data.error2)
                         swal("Successful!", data.success, "success")
                         .then((action) => {
-                            window.location.href = '{{ route('roles.index') }}';
+                            window.location.href = '{{ route("roles.index") }}';
                         });
                     else
                         swal("Error!", data.error2, "error");
@@ -281,7 +281,7 @@
             if (justTransfer)
             {
                 var model_id = $(this).attr("data-id");
-                var url = "{{ route('roles.destroy', ":model_id") }}";
+                var url = "{{ route('roles.destroy', ':model_id') }}";
 
                 $.ajax({
                     url: url.replace(':model_id', model_id),

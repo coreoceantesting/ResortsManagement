@@ -21,7 +21,6 @@
                     <div class="table-responsive">
                         <form class="theme-form" name="addForm" id="addForm" enctype="multipart/form-data">
                         @csrf
-
                         <div class="card-header">
                             <h4 class="card-title">Groups Form </h4>
                         </div>
@@ -29,26 +28,26 @@
                             <div class="mb-3 row">
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="bdate">Booking Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="booking" name="bdate" type="date" >
+                                    <input class="form-control" id="booking" name="bdate" type="date" min="">
                                     <span class="text-danger is-invalid name_err"></span>
                                 </div>
                                
                                 <div class="col-md-4">
-    <label class="col-form-label" for="count">Group Members</label>
-    <select class="form-select" id="groupmem" name="group_member" >
-        <option selected>select group Members</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-    </select>
-</div>
+                                    <label class="col-form-label" for="count">Group Members</label>
+                                    <select class="form-select" id="groupmem" name="group_member" >
+                                        <option selected>select group Members</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
 
 <!-------------------------------- Add More Start ---------------------------->
                     <div class="panel panel-footer pt-3 mt-3">
@@ -70,9 +69,9 @@
                             </thead>
                             <tbody id="addMore">
                                 <tr>
-                                    <td><input type="text" name="fname[]" class="form-control" multiple="" id="fname"></td>
-                                    <td><input type="text" name="lname[]" class="form-control" multiple="" id="lname"></td>
-                                    <td><input type="text" name="mobile[]" class="form-control" multiple="" id="mobile"></td>
+                                    <td><input type="text" name="fname[]" class="form-control" multiple="" id="fname" placeholder=" Enter First Name"></td>
+                                    <td><input type="text" name="lname[]" class="form-control" multiple="" id="lname" placeholder=" Enter Last Name"></td>
+                                    <td><input type="text" name="mobile[]" class="form-control" multiple="" id="mobile" placeholder=" Enter Mobile"></td>
                                     <td>
                                         <select class="js-example-basic-single form-control" name="gender[]" id="gender">
                                             <option value="">Select Gender</option>                         
@@ -85,9 +84,9 @@
                                 </tr>
 
                                     <tr>
-                                        <td><input type="text" name="fname[]" class="form-control" multiple="" id="fname"></td>
-                                        <td><input type="text" name="lname[]" class="form-control" multiple="" id="lname"></td>
-                                        <td><input type="text" name="mobile[]" class="form-control" multiple="" id="mobile"></td>
+                                        <td><input type="text" name="fname[]" class="form-control" multiple="" id="fname" placeholder=" Enter First Name"></td>
+                                        <td><input type="text" name="lname[]" class="form-control" multiple="" id="lname" placeholder=" Enter Last Name"></td>
+                                        <td><input type="text" name="mobile[]" class="form-control" multiple="" id="mobile" placeholder=" Enter Mobile"></td>
                                         <td>
                                             <select class="js-example-basic-single form-control" name="gender[]">
                                                 <option value="">Select Gender</option>                         
@@ -201,7 +200,6 @@ $('#groupmem').on('change', function() {
     }
 });
 
-
 $(document).ready(function() {
     var selectedCount = $('#groupmem').val();
     if (selectedCount > 2) {
@@ -211,4 +209,14 @@ $(document).ready(function() {
     }
 });
 
+  // Set the min attribute of the input field to today's date in YYYY-MM-DD format
+  document.addEventListener("DOMContentLoaded", function() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0'); 
+        const day = String(today.getDate()).padStart(2, '0'); 
+        const formattedDate = `${year}-${month}-${day}`;
+        
+        document.getElementById('booking').setAttribute('min', formattedDate);
+    });
 </script>

@@ -36,6 +36,7 @@ class CoupleController extends Controller
             'mobile' => 'required|array|min:' . ($coupleCount * 2),
             'gender' => 'required|array|min:' . ($coupleCount * 2),
             'document' => 'required|array|min:' . ($coupleCount * 2),
+            'document.*' => 'mimes:jpg,jpeg,pdf|max:10240',
         ];
     
         $messages = [
