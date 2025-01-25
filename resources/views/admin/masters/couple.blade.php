@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="count">Couple Count</label>
-                                    <select class="form-select" id="ccount" name="couplecount" placeholder="select technologies">
+                                    <select class="form-select" id="ccount" name="couplecount">
                                         <option selected>select Couple Count</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -39,29 +39,33 @@
                             <div class="panel panel-footer mt-3 pt-3">
                                 <table class="table table-responsive table-bordered" id="dynamicAddRemove">
                                     <thead>
-                                        <tr>
+                                        <tr >
                                             <th>First Name</th>
                                             <th>Last Name</th>
                                             <th>Mobile</th>                                          
                                             <th>Gender</th>  
                                             <th>Adhar Card </th>
-                                            <th>
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-success addMoreForm">
-                                                    <i class="fa fa-plus"></i> 
-                                                </a>
-                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody id="addMore">
                                         <tr>
                                             <td>   
                                                 <input type="text" name="fname[]" class="form-control" id="fname" placeholder="Enter First Name">
+                                                @if ($errors->has('fname'))
+                                                    <span class="text-danger">{{ $errors->first('fname') }}</span>
+                                                @endif
                                             </td>
                                             <td>   
                                                 <input type="text" name="lname[]" class="form-control" id="lname" placeholder="Enter Last Name">
+                                                @if ($errors->has('lname'))
+                                                <span class="text-danger">{{ $errors->first('lname') }}</span>
+                                                @endif
                                             </td>   
                                             <td>   
                                                 <input type="text" name="mobile[]" class="form-control" id="mobile" placeholder="Enter Mobile">
+                                                @if ($errors->has('mobile'))
+                                                <span class="text-danger">{{ $errors->first('mobile') }}</span>
+                                                @endif
                                             </td>    
                                             <td>
                                                 <select class="js-example-basic-single form-select" name="gender[]" id="gender">
@@ -69,9 +73,15 @@
                                                     <option value="1">Female</option>
                                                     <option value="2">Male</option>      
                                                 </select>  
+                                                @if ($errors->has('gender'))
+                                                    <span class="text-danger">{{ $errors->first('gender') }}</span>
+                                                @endif
                                             </td>    
                                             <td>
                                                 <input type="file" name="document[]" class="form-control" id="document">
+                                                @if ($errors->has('document'))
+                                                    <span class="text-danger">{{ $errors->first('document') }}</span>
+                                                @endif
                                             </td>    
                                             <td>
                                                 <a href="javascript:void(0);" class="btn btn-sm btn-danger removeAddMore">
@@ -96,32 +106,36 @@
 </div>
 
 </x-admin.layout>
-
+<style>
+        /* Hide columns on mobile */
+        @media only screen and (max-width: 767px) {
+            #dynamicAddRemove th, /* Adhar Card column */
+            #dynamicAddRemove th {
+                display: none;
+            }
+        }
+    </style>
 <script src="{{ asset('js/app.js') }}"></script>
 {{-- Add --}}
 <script>
    $(document).ready(function() {
-    // Update the number of rows based on the couple count selection
     $('#ccount').on('change', function() {
         var coupleCount = $(this).val();
         if (coupleCount && coupleCount > 0) {
-            // Clear the existing rows first
-            $('#addMore').empty();
-            // Add rows based on the selected couple count
-            for (var i = 0; i < coupleCount * 2; i++) { // Multiply by 2 because each couple needs 2 rows
+            $('#addMore').empty();    
+            for (var i = 0; i < coupleCount * 2; i++) { 
                 addMoreForm();
             }
         }
     });
 
-    // Function to add a new row to the form
     var rowId = 1;
     function addMoreForm() {
         var tr = '<tr id="row_' + rowId + '">' +
-            '<td><input type="text" name="fname[]" class="form-control" required></td>' +
-            '<td><input type="text" name="lname[]" class="form-control" required></td>' +
-            '<td><input type="text" name="mobile[]" class="form-control" required></td>' +
-            '<td><select class="js-example-basic-single form-control" name="gender[]" required>' +
+            '<td><input type="text" name="fname[]" class="form-control" required placeholder="Enter First Name"></td>' +
+            '<td><input type="text" name="lname[]" class="form-control" placeholder="Enter Last Name" required></td>' +
+            '<td><input type="text" name="mobile[]" class="form-control" placeholder="Enter Mobile" required></td>' +
+            '<td><select class="js-example-basic-single form-control" name="gender[]" required >' +
             '<option value="">Select Gender</option>' +
             '<option value="1">Female</option>' +
             '<option value="2">Male</option>' +
@@ -189,7 +203,6 @@
     });
 });
 
-  // Set the min attribute of the input field to today's date in YYYY-MM-DD format
   document.addEventListener("DOMContentLoaded", function() {
         const today = new Date();
         const year = today.getFullYear();
@@ -202,16 +215,16 @@
     </script>
     <script>
     $(document).ready(function() {
-    // Add more rows functionality
     $(".addMoreForm").click(function() {
         var newRow = $('#addMore tr:first').clone();
-        newRow.find('input').val(''); // Clear input fields in new row
+        newRow.find('input').val(''); 
         $('#addMore').append(newRow);
     });
 
-    // Remove row functionality
     $(document).on('click', '.removeAddMore', function() {
         $(this).closest('tr').remove();
     });
 });
+</script>
+
 </script>

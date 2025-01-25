@@ -50,7 +50,10 @@
                     <div class="collapse menu-dropdown" id="sidebarLayouts">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{route('dashboard')}}" class="nav-link" data-key="t-horizontal">Pending Booking</a>
+                                <a href="{{route('dashboard')}}" class="nav-link" data-key="t-horizontal"> Couple Booking</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('dashboardGroup')}}" class="nav-link" data-key="t-horizontal"> Group Booking</a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('bookingApproved_dashboard')}}" class="nav-link" data-key="t-horizontal">Confirm Booking</a>

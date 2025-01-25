@@ -8,10 +8,10 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <form class="theme-form" name="addForm" id="addForm" enctype="multipart/form-data" method="POST" >
+                        <form class="theme-form" name="addForm" id="addForm" enctype="multipart/form-data"  >
                         @csrf
                         <div class="card-header">
-                            <h4 class="card-title">Booking Pending Details </h4>
+                            <h4 class="card-title"> Couple Booking  Pending Details </h4>
                         </div>
                         <div class="card-body">
                             <div class="row">
@@ -25,7 +25,7 @@
                                                                                 <th>Booking Id</th>
                                                                                 <th>Booking Date</th>
                                                                                 <th>Couple Count</th>
-                                                                                <th>Group Members</th>
+                                                                                <th>Report</th>
                                                                                 <th>Action</th>
                                                                             </tr>
                                                                         </thead>
@@ -35,7 +35,16 @@
                                                                                     <td data-label="Booking Id">{{ $request->id }}</td>
                                                                                     <td data-label="Booking Date">{{ $request->booking_date }}</td>
                                                                                     <td data-label="Couple Count">{{ $request->couple_count }}</td>
-                                                                                    <td data-label="Group Members">{{ $request->group_member }}</td>
+                                                                                    <td>
+                                                                                        <button class="edit-element btn text-primary px-2 py-1" title="Edit" data-id="request->id" id="edit-btn-request->id">
+                                                                                            <i data-feather="edit"></i> Edit
+                                                                                        </button>
+                                                                                        <a href="{{ route('customer.view', $request->id) }}">
+                                                                                                    <button type="button" class="btn text-info view-element px-2 py-1" title="View" data-id="{{ $request->id }}" id="view-btn-{{ $request->id }}">
+                                                                                                        <i data-feather="eye"></i> View
+                                                                                                    </button>
+                                                                                                </a>
+                                                                                    </td>
                                                                                     <td>
                                                                                         <button class="edit-element btn text-success px-2 py-1" title="Approve" data-id="{{ $request->id }}" id="approve-btn-{{ $request->id }}">
                                                                                             <i data-feather="check-circle"></i>

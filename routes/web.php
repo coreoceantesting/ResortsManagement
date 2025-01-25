@@ -43,7 +43,8 @@ Route::post('reset-password', [App\Http\Controllers\Admin\AuthController::class,
 
 // Authenticated admins
 
-Route::get('dashboard', [App\Http\Controllers\Admin\BookingController::class, 'bookingPendingIndex'])->name('dashboard');
+Route::get('dashboard/Couple', [App\Http\Controllers\Admin\BookingController::class, 'bookingCouplePendingIndex'])->name('dashboard');
+Route::get('dashboard/Group', [App\Http\Controllers\Admin\BookingController::class, 'bookingGroupPendingIndex'])->name('dashboardGroup');
 Route::get('bookingApproved_dashboard', [App\Http\Controllers\Admin\BookingController::class, 'bookingApprovedIndex'])->name('bookingApproved_dashboard');
 Route::get('bookingRejected_dashboard', [App\Http\Controllers\Admin\BookingController::class, 'bookingRejectedIndex'])->name('bookingRejected_dashboard');
 Route::post('/booking/approve/{id}', [BookingController::class, 'approveBooking'])->name('booking.approve');
@@ -70,8 +71,8 @@ Route::middleware(['auth','PreventBackHistory'])->group(function()
     // admin
     
 
-   
-
+    Route::get('customer/view/{id}', [BookingController::class, 'viewCouple'])->name('customer.view');
+    Route::get('groupcustomer/view/{id}', [BookingController::class, 'viewGroup'])->name('groupcustomer.view');
 });
  
 

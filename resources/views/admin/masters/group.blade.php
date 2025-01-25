@@ -31,11 +31,10 @@
                                     <input class="form-control" id="booking" name="bdate" type="date" min="">
                                     <span class="text-danger is-invalid name_err"></span>
                                 </div>
-                               
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="count">Group Members</label>
-                                    <select class="form-select" id="groupmem" name="group_member" >
-                                        <option selected>select group Members</option>
+                                    <label class="col-form-label" for="count">Couple Count</label>
+                                    <select class="form-select" id="groupmem" name="group_member">
+                                        <option selected>select Couple Count</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -94,7 +93,10 @@
                                                 <option value="2">Male</option>      
                                             </select>
                                         </td>
-                                        <td><input type="file" name="document[]" class="form-control" multiple="" id="document"></td>
+                                        <td>
+                                            <input type="file" name="document[]" class="form-control" multiple="" id="document">
+                                            <span class="text-danger is-invalid name_err"></span>
+                                        </td>
                                         <td><a href="javascript:" class="btn btn-sm btn-danger removeAddMore"><i class="fa fa-remove"></i></a></td>
                                     </tr>
                             </tbody>
@@ -155,37 +157,60 @@
 
     });
 </script>
-
+<style>
+        /* Hide columns on mobile */
+        @media only screen and (max-width: 767px) {
+            #dynamicAddRemove th,
+            #dynamicAddRemove th {
+                display: none;
+            }
+        }
+    </style>
 {{-- Add More Form --}}
     <script>
-        $('.addMoreForm').on('click',function(){
-            addMoreForm();
-        });
+        $(document).ready(function() 
+        {
+    $('#groupmem').on('change', function()
+     {
 
-        var rowId = 1; 
-        function addMoreForm() {
-            var tr = '<tr id="row_' + rowId + '">' +
-                '<td><input type="text" name="fname[]" class="form-control" multiple=""></td>' +
-                '<td><input type="text" name="lname[]" class="form-control" multiple=""></td>' +
-                '<td><input type="text" name="mobile[]" class="form-control" multiple=""></td>' +
-                '<td> <select class="js-example-basic-single form-control" name="gender[]" id="gender" ><option value="">--Select Gender--</option><option value="1" name="gender[' + rowId + ']">Female</option><option value="2" name="gender[' + rowId + ']">Male</option> </select>  </td>' +
-                '<td><input type="file" name="document[]" class="form-control" multiple=""></td>' +
-                '<td><a href="javascrip:" class="btn btn-sm btn-danger removeAddMore" data-rowid="' + rowId + '"><i class="fa fa-remove"></i></a></td>' +
-                '<tr>';
-
-            $('#addMore').append(tr); 
-            $('#gender' + rowId).select2();  
-            rowId++;
+        var group_member = $(this).val();
+        if (group_member && group_member > 0) 
+        {
+            $('#addMore').empty();    
+            for (var i = 0; i < group_member * 1; i++) { 
+                addMoreForm();
+            }
         }
-        
+    });
+       
+    var rowId = 1;
+    function addMoreForm() {
+        var tr = '<tr id="row_' + rowId + '">' +
+            '<td><input type="text" name="fname[]" class="form-control" required placeholder="Enter First Name"></td>' +
+            '<td><input type="text" name="lname[]" class="form-control" placeholder="Enter Last Name" required></td>' +
+            '<td><input type="text" name="mobile[]" class="form-control" placeholder="Enter Mobile" required></td>' +
+            '<td><select class="js-example-basic-single form-control" name="gender[]" required >' +
+            '<option value="">Select Gender</option>' +
+            '<option value="1">Female</option>' +
+            '<option value="2">Male</option>' +
+            '</select></td>' +
+            '<td><input type="file" name="document[]" class="form-control" ></td>' +
+            '<td><a href="javascript:;" class="btn btn-sm btn-danger removeAddMore" data-rowid="' + rowId + '"><i class="fa fa-remove"></i></a></td>' +
+            '</tr>';
 
-        $(document).on('click', '.removeAddMore', function () {
-            if ($(this).parents('table').find('.removeAddMore').length > 1) {
-                $(this).parent().parent().remove();
-            } else {
-                alert("Cannot remove the last element.");
-            }        
-        });
+        $('#addMore').append(tr);
+        rowId++;
+    }
+
+    // Remove row functionality
+    $(document).on('click', '.removeAddMore', function() {
+        if ($(this).parents('table').find('.removeAddMore').length > 1) {
+            $(this).parent().parent().remove();
+        } else {
+            alert("Cannot remove the last element.");
+        }
+    });
+});
     </script>
 
 <script>
@@ -209,7 +234,7 @@ $(document).ready(function() {
     }
 });
 
-  // Set the min attribute of the input field to today's date in YYYY-MM-DD format
+ 
   document.addEventListener("DOMContentLoaded", function() {
         const today = new Date();
         const year = today.getFullYear();
@@ -219,4 +244,65 @@ $(document).ready(function() {
         
         document.getElementById('booking').setAttribute('min', formattedDate);
     });
+</script>
+
+<script>
+    $(document).ready(function() {
+       
+        $('#groupmem').on('change', function() {
+            var selectedMembers = $(this).val();
+            var currentRows = $('#addMore tr').length;
+  
+            if (selectedMembers < currentRows) {
+                $('#addMore tr:gt(' + (selectedMembers - 1) + ')').remove();
+            }
+            if (selectedMembers > currentRows) {
+                var rowsToAdd = selectedMembers - currentRows;
+                for (var i = 0; i < rowsToAdd; i++) {
+                    var newRow = $('#addMore tr:first').clone();
+                    newRow.find('input').val('');
+                    newRow.find('select').val('');
+                    newRow.appendTo('#addMore');
+                }
+            }
+        });
+
+        // Remove row functionality
+        $(document).on('click', '.removeAddMore', function() {
+            $(this).closest('tr').remove();
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+    $('#groupmem').on('change', function() {
+        var selectedMembers = $(this).val();
+        var currentRows = $('#addMore tr').length;
+
+        if (selectedMembers < currentRows) {
+            $('#addMore tr:gt(' + (selectedMembers - 1) + ')').remove();
+        }
+        if (selectedMembers > currentRows) {
+            var rowsToAdd = selectedMembers - currentRows;
+            for (var i = 0; i < rowsToAdd; i++) {
+                var newRow = $('#addMore tr:first').clone();
+                newRow.find('input').val('');
+                newRow.find('select').val('');
+                newRow.appendTo('#addMore');
+            }
+        }
+    });
+
+    // Limit the number of rows to 2
+    var maxRows = 2;
+    $(document).on('click', '.addMoreForm', function() {
+        if ($('#addMore tr').length >= maxRows) {
+            alert("You can only add up to 2 members.");
+        } else {
+            addMoreForm();
+        }
+    });
+});
+
 </script>

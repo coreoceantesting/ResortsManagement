@@ -36,6 +36,14 @@ class GroupController extends Controller
            'document' => ['required','array','min:2','max:' . ($groupmemberCount > 2 ? 2 : $groupmemberCount)],
            
         ]);
+        $messages = [
+            'fname.*.required' => 'First name is required for each entry.',
+            'lname.*.required' => 'Last name is required for each entry.',
+            'mobile.*.required' => 'Mobile number is required for each entry.',
+            'mobile.digits' => 'The mobile number must be exactly 10 digits.',
+            'gender.*.required' => 'Gender is required for each entry.',
+            'document.*.required' => 'Adhar card is required for each entry.',
+        ];
 
         // Store the booking data
         $booking = Booking::create([
