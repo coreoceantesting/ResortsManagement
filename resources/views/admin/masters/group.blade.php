@@ -32,9 +32,9 @@
                                     <span class="text-danger is-invalid name_err"></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="count">Couple Count</label>
+                                    <label class="col-form-label" for="count">Group Member</label>
                                     <select class="form-select" id="groupmem" name="group_member">
-                                        <option selected>select Couple Count</option>
+                                        <option selected>selectGroup Members</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -45,6 +45,46 @@
                                         <option value="8">8</option>
                                         <option value="9">9</option>
                                         <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                        <option value="28">28</option>
+                                        <option value="29">29</option>
+                                        <option value="30">30</option>
+                                        <option value="31">31</option>
+                                        <option value="32">32</option>
+                                        <option value="33">33</option>
+                                        <option value="34">34</option>
+                                        <option value="35">35</option>
+                                        <option value="36">36</option>
+                                        <option value="37">37</option>
+                                        <option value="38">38</option>
+                                        <option value="39">39</option>
+                                        <option value="40">40</option>
+                                        <option value="41">41</option>
+                                        <option value="42">42</option>
+                                        <option value="43">43</option>
+                                        <option value="44">44</option>
+                                        <option value="45">45</option>
+                                        <option value="46">46</option>
+                                        <option value="47">47</option>
+                                        <option value="48">48</option>
+                                        <option value="49">49</option>
+                                        <option value="50">50</option>
                                     </select>
                                 </div>
 
@@ -58,12 +98,6 @@
                                     <th>Mobile</th>                                          
                                     <th>Gender</th>  
                                     <th>Adhar Card</th>
-                                    <th style="">
-                                        <!-- Initially hidden add more button -->
-                                        <a href="javascript:" class="btn btn-sm btn-success addMoreForm" style="display:none;">
-                                            <i class="fa fa-plus"></i> 
-                                        </a>
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody id="addMore">
@@ -97,7 +131,7 @@
                                             <input type="file" name="document[]" class="form-control" multiple="" id="document">
                                             <span class="text-danger is-invalid name_err"></span>
                                         </td>
-                                        <td><a href="javascript:" class="btn btn-sm btn-danger removeAddMore"><i class="fa fa-remove"></i></a></td>
+                                      
                                     </tr>
                             </tbody>
                         </table>
@@ -195,7 +229,7 @@
             '<option value="2">Male</option>' +
             '</select></td>' +
             '<td><input type="file" name="document[]" class="form-control" ></td>' +
-            '<td><a href="javascript:;" class="btn btn-sm btn-danger removeAddMore" data-rowid="' + rowId + '"><i class="fa fa-remove"></i></a></td>' +
+        
             '</tr>';
 
         $('#addMore').append(tr);
@@ -203,13 +237,7 @@
     }
 
     // Remove row functionality
-    $(document).on('click', '.removeAddMore', function() {
-        if ($(this).parents('table').find('.removeAddMore').length > 1) {
-            $(this).parent().parent().remove();
-        } else {
-            alert("Cannot remove the last element.");
-        }
-    });
+    
 });
     </script>
 
@@ -267,10 +295,7 @@ $(document).ready(function() {
             }
         });
 
-        // Remove row functionality
-        $(document).on('click', '.removeAddMore', function() {
-            $(this).closest('tr').remove();
-        });
+       
     });
 </script>
 
@@ -304,5 +329,53 @@ $(document).ready(function() {
         }
     });
 });
+
+</script>
+<script>
+
+$(document).ready(function() {
+    // Handle group member selection change
+    $('#groupmem').on('change', function() {
+        var selectedMembers = $(this).val(); // Get selected member count
+        var currentRows = $('#addMore tr').length; // Get current row count
+
+        // Ensure the table rows match the selected group member count
+        if (selectedMembers < currentRows) {
+            $('#addMore tr:gt(' + (selectedMembers - 1) + ')').remove(); // Remove extra rows if any
+        }
+        if (selectedMembers > currentRows) {
+            var rowsToAdd = selectedMembers - currentRows; // Calculate rows to add
+            for (var i = 0; i < rowsToAdd; i++) {
+                var newRow = $('#addMore tr:first').clone(); // Clone the first row
+                newRow.find('input').val(''); // Clear input values
+                newRow.find('select').val(''); // Clear select values
+                newRow.appendTo('#addMore'); // Append new row
+            }
+        }
+
+        // Hide or show document input fields based on group member count
+        $('#addMore tr').each(function(index) {
+            if (index < 2) {
+                $(this).find('td').eq(4).show(); // Show document input field for first two members
+            } else {
+                $(this).find('td').eq(4).hide(); // Hide document input field for remaining members
+            }
+        });
+    });
+
+    // Trigger initial behavior when the page loads
+    var selectedMembers = $('#groupmem').val();
+    $('#addMore tr').each(function(index) {
+        if (index < 2) {
+            $(this).find('td').eq(4).show(); // Show document input field for first two members
+        } else {
+            $(this).find('td').eq(4).hide(); // Hide document input field for remaining members
+        }
+    });
+
+   
+});
+
+
 
 </script>

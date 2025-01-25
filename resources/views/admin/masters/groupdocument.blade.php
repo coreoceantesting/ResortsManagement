@@ -40,10 +40,10 @@
                                                                                 <td data-label="Mobile">{{ $request->mobile }}</td>
                                                                                 <td data-label="Gender">{{ $request->Gender }}</td>
                                                                                 <td>
-                                                                                <div class="col-sm-6">
-                                                                                <a href="{{ asset('storage/'.$request->document) }}" target="_blank">View</a>
-                                                                                
-                                                                                    </div> </td>
+                                                                                    <div class="col-sm-6">
+                                                                                        <a href="{{ asset('storage/' . $request->document) }}" target="_blank">View</a>
+                                                                                    </div>
+                                                                                </td>
                                                                                     
                                                                                 </tr>
                                                                             @empty
