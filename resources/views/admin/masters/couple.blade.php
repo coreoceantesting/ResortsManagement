@@ -222,11 +222,12 @@
     <script>
         $(document).ready(function() {
             $(document).ajaxStart(function() {
-                $('#preloader').show(); // Show loader during Ajax request
+                
+                $('#pageLoader').show(); // Show loader during Ajax request
             });
 
             $(document).ajaxStop(function() {
-                $('#preloader').hide(); // Hide loader when the request finishes
+                $('#pageLoader').hide(); // Hide loader when the request finishes
             });
         });
     </script>

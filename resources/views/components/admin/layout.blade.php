@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.8.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hbx3WW3VEnpFGfGaaDgwb9GZ5DxxQebbCzE/MHHkkH7RbRhEoI3aXxDAFxNnTGnt" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.8.0/dist/js/coreui.bundle.min.js" integrity="sha384-aUfnS+hkMBjwlmClHswy/heTcxNQGkwv2aZATR+O6N9AfSs9Q3a2BJZSlrMeg2sS" crossorigin="anonymous"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     @stack('styles')
 </head>
 
@@ -73,7 +73,7 @@
             </div>
                 <!-- Loader HTML -->
                 <div id="pageLoader" style="display: none;">
-                    <div class="loader">Loading...</div>
+                    <div class="loader"></div>
                 </div>
 
             <x-admin.footer />
@@ -124,6 +124,7 @@
     <script src="{{ asset('admin/datatables/ajax/libs/pdfmake/0.1.53/vfs_fonts.js') }}"></script>
     <script src="{{ asset('admin/datatables/ajax/libs/jszip/3.1.3/jszip.min.js') }}"></script>
     <script src="{{ asset('admin/js/pages/datatables.init.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </body>
 
 {{-- AddForm n EditForm Open/Close jquery --}}
@@ -313,18 +314,7 @@
 
 </style>
 
-<!-- Add this script to show and hide the loader -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Show loader when the page starts loading
-        document.getElementById('pageLoader').style.display = 'flex';
 
-        // Hide loader once the page is fully loaded
-        window.addEventListener('load', function() {
-            document.getElementById('pageLoader').style.display = 'none';
-        });
-    });
-</script>
 
 
 </html>

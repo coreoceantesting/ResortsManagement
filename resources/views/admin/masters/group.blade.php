@@ -241,8 +241,6 @@
                 $('#addMore').append(tr);
                 rowId++;
             }
-
-            // Remove row functionality
             
             });
     </script>
@@ -340,42 +338,40 @@
     <script>
 
         $(document).ready(function() {
-            // Handle group member selection change
+       
             $('#groupmem').on('change', function() {
-                var selectedMembers = $(this).val(); // Get selected member count
-                var currentRows = $('#addMore tr').length; // Get current row count
+                var selectedMembers = $(this).val(); 
+                var currentRows = $('#addMore tr').length; 
 
-                // Ensure the table rows match the selected group member count
                 if (selectedMembers < currentRows) {
-                    $('#addMore tr:gt(' + (selectedMembers - 1) + ')').remove(); // Remove extra rows if any
+                    $('#addMore tr:gt(' + (selectedMembers - 1) + ')').remove(); 
                 }
                 if (selectedMembers > currentRows) {
-                    var rowsToAdd = selectedMembers - currentRows; // Calculate rows to add
+                    var rowsToAdd = selectedMembers - currentRows;
                     for (var i = 0; i < rowsToAdd; i++) {
-                        var newRow = $('#addMore tr:first').clone(); // Clone the first row
-                        newRow.find('input').val(''); // Clear input values
-                        newRow.find('select').val(''); // Clear select values
-                        newRow.appendTo('#addMore'); // Append new row
+                        var newRow = $('#addMore tr:first').clone(); 
+                        newRow.find('input').val(''); 
+                        newRow.find('select').val(''); 
+                        newRow.appendTo('#addMore');
                     }
                 }
 
-                // Hide or show document input fields based on group member count
                 $('#addMore tr').each(function(index) {
                     if (index < 2) {
-                        $(this).find('td').eq(4).show(); // Show document input field for first two members
+                        $(this).find('td').eq(4).show(); 
                     } else {
-                        $(this).find('td').eq(4).hide(); // Hide document input field for remaining members
+                        $(this).find('td').eq(4).hide(); 
                     }
                 });
             });
 
-            // Trigger initial behavior when the page loads
+           
             var selectedMembers = $('#groupmem').val();
             $('#addMore tr').each(function(index) {
                 if (index < 2) {
-                    $(this).find('td').eq(4).show(); // Show document input field for first two members
+                    $(this).find('td').eq(4).show(); 
                 } else {
-                    $(this).find('td').eq(4).hide(); // Hide document input field for remaining members
+                    $(this).find('td').eq(4).hide(); 
                 }
             });
 
@@ -383,3 +379,16 @@
         });
 
 </script>
+
+<script>
+        $(document).ready(function() {
+            $(document).ajaxStart(function() {
+                
+                $('#pageLoader').show(); 
+            });
+
+            $(document).ajaxStop(function() {
+                $('#pageLoader').hide(); 
+            });
+        });
+    </script>

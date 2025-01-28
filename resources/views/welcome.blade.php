@@ -33,7 +33,7 @@
                 border-radius: 10px;
             }
             .custompadding{
-                padding: 5% 10%;
+                padding: 5% 20%;
             }
 
             .form-control{
@@ -119,18 +119,18 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                position: relative;
             }
 
             .custom-card img {
                 width: 100%; 
-                height: 200px; 
                 object-fit: cover; 
             }
             .custom-card .card-body {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                height: 100%; 
+              
             }
 
             .custom-card .btn {
@@ -144,46 +144,47 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- Background Image for Desktop View -->
-                <div class="bg-img col-lg-6 col-md-6 col-12 d-flex justify-content-center">
-                    <img class="d-md-none d-lg-none d-xl-none d-sm-block d-block mt-4" src="" style="width: 300px;">
-                </div>
+                    <div class="bg-img col-lg-6 col-md-6 col-12 d-flex justify-content-center">
+                        <img class="d-md-none d-lg-none d-xl-none d-sm-block d-block mt-4" src="" style="width: 300px;">
+                    </div>
                 <!-- Mobile View -->
                 <!-- <div class="col-lg-6 col-md-6 col-12 d-md-none d-lg-none d-xl-none d-sm-block d-block mobile-view-bgcolor">
                     <img src="https://pmc.maharts.com/admin/images/login/mobile.png" style="width: 100%" alt="">
                 </div> -->
-                <div class="col-lg-6 col-md-6 col-12 mobile-view-bgcolor">
-                    <div class="container custompadding">
-                        <div class="row">
-                            <div class="col-md-6">
-                            <div class="card custom-card">
-                                            <img class="card-img-top" src="{{ asset('admin/images/couple.jpg') }}" alt="Couple" style="height: 225px;" >
-                                            <div class="card-body">
-                                                <a href="{{ route('couple.index') }}" class="btn btn-primary">Couple</a>
+                    <div class="col-lg-6 col-md-6 col-12 mobile-view-bgcolor">
+                        <div class="container custompadding">
+                            <div class="row">
+                                    <div class="col-md-6">
+                                            <div class="card custom-card">
+                                                <img class="card-img-top" src="{{ asset('admin/images/couple.jpg') }}" alt="Couple"  >
+                                                <div class="card-body">
+                                                    <a href="{{ route('couple.index') }}" class="btn btn-primary">Couple</a>
+                                                </div>
                                             </div>
-                                        </div>
+                                    </div>
                             </div>
-                        </div>
 
-                        <!-- Second Row of Cards -->
-                        <div class="row">
-                            <div class="col-md-6 py-3">
-                                        <div class="card custom-card">
-                                            <img class="card-img-top" src="{{ asset('admin/images/group.jpg') }}" alt="group" >
-                                            <div class="card-body">
-                                                <a href="{{ route('group.index') }}" class="btn btn-primary">Group</a>
+                            <!-- Second Row of Cards -->
+                            <div class="row">
+                                <div class="col-md-6 py-3">
+                                            <div class="card custom-card">
+                                                <img class="card-img-top" src="{{ asset('admin/images/group.jpg') }}" alt="group" >
+                                                <div class="card-body">
+                                                    <a href="{{ route('group.index') }}" class="btn btn-primary">Group</a>
+                                                </div>
                                             </div>
-                                        </div>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </section>
-
-
-        <script src="https://pmc.maharts.com/admin/js/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://pmc.maharts.com/admin/js/sweetalert.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </body>
+
 </html>
+
+<script src="https://pmc.maharts.com/admin/js/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://pmc.maharts.com/admin/js/sweetalert.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
