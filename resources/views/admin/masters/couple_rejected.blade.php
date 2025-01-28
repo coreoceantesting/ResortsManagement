@@ -66,25 +66,16 @@
                                                             <!-- Actions for the first row only -->
                                                             @if($index == 0)
                                                                 <td rowspan="{{ count($bookingrequest->couples) }}">
-                                                                    <div class="row">
-                                                                        <div class="col-sm">
-                                                                            <button class="edit-element btn text-success px-2 py-1" title="Approve" data-id="{{ $bookingrequest->id }}" id="approve-btn-{{ $bookingrequest->id }}">
-                                                                                <i data-feather="check-circle"></i> Approve
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="col-sm">
-                                                                            <button class="btn text-danger rem-element px-2 py-1" title="Reject" data-id="{{ $bookingrequest->id }}" id="reject-btn-{{ $bookingrequest->id }}">
-                                                                                <i data-feather="x-circle"></i> Reject
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="col-sm">
+                                                                   
+                                                                      
+                                                                       
                                                                             <a href="{{ route('booking.viewCouple', $bookingrequest->id) }}">
                                                                                 <button type="button" class="btn text-info view-element px-2 py-1" title="View" data-id="{{ $bookingrequest->id }}" id="view-btn-{{ $bookingrequest->id }}">
                                                                                     <i data-feather="eye"></i> View
                                                                                 </button>
                                                                             </a>
-                                                                        </div>
-                                                                    </div>  
+                                                                       
+                                                                     
                                                                 </td>
                                                             @endif
                                                         </tr>
