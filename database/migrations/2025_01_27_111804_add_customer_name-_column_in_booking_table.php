@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('booking', function (Blueprint $table) {
-            $table->integer('status')->default(0)->comment("0 => Pending, 1 => Approve, 2 => Reject")->after('group_member');
+            $table->string('customername')->nullable()->after('booking_date');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('booking', function (Blueprint $table) {
-            $table->dropColumn('status');
+            $table->dropColumn('customername');
         });
     }
 };

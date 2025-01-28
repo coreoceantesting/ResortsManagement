@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Masters;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Customer;
+use App\Models\Group;
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
@@ -21,7 +22,7 @@ class GroupController extends Controller
        
     }
 
-    
+   
     public function storeGroup(Request $request)
     {
         $groupmemberCount = $request->input('group_member');
@@ -29,6 +30,7 @@ class GroupController extends Controller
         $request->validate([
            'bdate' => 'required|date',
             'group_member' => 'required|integer|min:1|max:10',
+            'customername' => 'required',
             'fname' => 'required|array|min:' . ($groupmemberCount ),
             'lname' => 'required|array|min:' . ($groupmemberCount ),
             'mobile' => 'required|array|min:' . ($groupmemberCount ),
@@ -37,6 +39,7 @@ class GroupController extends Controller
            
         ]);
         $messages = [
+            'customername.required' => 'Customer name is required.',
             'fname.*.required' => 'First name is required for each entry.',
             'lname.*.required' => 'Last name is required for each entry.',
             'mobile.*.required' => 'Mobile number is required for each entry.',
@@ -49,11 +52,14 @@ class GroupController extends Controller
         $booking = Booking::create([
             'booking_date' => $request->bdate,
             'group_member' => $request->group_member,
+            'customername' => $request->customername,
         ]);
 
         // Store the group data
         foreach ($request->fname as $index => $firstName) {
-            $customer = new Customer();
+            $customer = new Group();
+            $customer->booking_date = $request->bdate; // Corrected for the first booking_date
+            $customer->customername = $request->customername;
             $customer->firstname = $request->fname[$index];
             $customer->lastname = $request->lname[$index];
             $customer->mobile = $request->mobile[$index];
@@ -72,26 +78,5 @@ class GroupController extends Controller
     }
 
    
-    public function show(string $id)
-    {
-       
-    }
-
-    
-    public function edit(string $id)
-    {
-       
-    }
-
    
-    public function update(Request $request, string $id)
-    {
-       
-    }
-
-   
-    public function destroy(string $id)
-    {
-       
-    }
 }

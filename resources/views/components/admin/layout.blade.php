@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>{{ config('app.name') }} | {{ $title }}</title>
+    <title>Next Holiday | {{ $title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -71,6 +71,10 @@
 
                 </div>
             </div>
+                <!-- Loader HTML -->
+                <div id="pageLoader" style="display: none;">
+                    <div class="loader">Loading...</div>
+                </div>
 
             <x-admin.footer />
         </div>
@@ -197,7 +201,22 @@
 
 
 <style>
-        /* General table responsiveness */
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f4f4f4;
+    }
+
     .table {
         width: 100%;
         table-layout: auto;
@@ -205,51 +224,108 @@
 
     /* For small screens (mobile devices) */
     @media (max-width: 767px) {
-        .table th, .table td {
+        thead {
+            display: none; /* Hide headers */
+        }
+
+        tbody tr {
             display: block;
-            width: 100%;
-            box-sizing: border-box;
+            margin-bottom: 10px;
+            border: 1px solid #ddd; 
         }
 
-        .table th {
-            background-color: #f8f9fa;
+        tbody tr td {
+            display: block;
             text-align: left;
-            padding: 8px;
+            position: relative;
+            padding-left: 50%;
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
 
+        tbody tr td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
         .table td {
             padding: 8px 15px;
             border-top: 1px solid #ddd;
         }
 
-        .table td:before {
-            content: attr(data-label);
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
+        .row {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .table {
-            border-collapse: separate;
-            border-spacing: 0 10px;
+        .row .col-sm-4 {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .btn {
+            width: 100%;
+            text-align: center;
         }
     }
-
-    /* For medium screens (tablets) */
     @media (min-width: 768px) and (max-width: 1024px) {
         .table {
             font-size: 14px;
         }
     }
-
-    /* For large screens (desktops) */
     @media (min-width: 1025px) {
         .table {
             font-size: 16px;
         }
     }
 
+        /* Page Loader Styles */
+    #pageLoader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    .loader {
+        border: 5px solid #f3f3f3; /* Light gray */
+        border-top: 5px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
 </style>
+
+<!-- Add this script to show and hide the loader -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Show loader when the page starts loading
+        document.getElementById('pageLoader').style.display = 'flex';
+
+        // Hide loader once the page is fully loaded
+        window.addEventListener('load', function() {
+            document.getElementById('pageLoader').style.display = 'none';
+        });
+    });
+</script>
+
 
 </html>
 

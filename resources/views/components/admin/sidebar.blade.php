@@ -28,44 +28,73 @@
         <div class="container-fluid">
             <div id="two-column-menu"></div>
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="menu-title">
-                    <span data-key="t-menu">Menu</span>
-                </li>
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link menu-link" href="#" >
+ 
+                @if(!Route::is('couple.index') && !Route::is('group.index') && !Route::is('couple.show') && !Route::is('group.show'))
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="{{route('dashboard')}}" >
                         <i class="ri-dashboard-2-line"></i>
                         <span data-key="t-dashboards">Dashboard</span>
                     </a>
-                </li> -->
-
-
+                </li>
                 <li class="nav-item">
-                @if(!Route::is('couple.index') && !Route::is('group.index') && !Route::is('couple.show') && !Route::is('group.show'))
-                <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
-                        <i class="ri-layout-3-line"></i>
-                        <span data-key="t-layouts">Masters</span>
-                    </a>
-                    @endif
+                        <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                            <i class="ri-layout-3-line"></i>
+                            <span data-key="t-layouts">Couple Entry</span>
+                        </a>
+                 
                     <div class="collapse menu-dropdown" id="sidebarLayouts">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="{{route('dashboard')}}" class="nav-link" data-key="t-horizontal"> Couple Booking</a>
+                                <a href="{{route('dashboardCouple')}}" class="nav-link" data-key="t-horizontal">Booking</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('dashboardGroup')}}" class="nav-link" data-key="t-horizontal"> Group Booking</a>
+                                <a href="{{route('coupleApproved_dashboard')}}" class="nav-link" data-key="t-horizontal">Approved</a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('bookingApproved_dashboard')}}" class="nav-link" data-key="t-horizontal">Confirm Booking</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{route('bookingRejected_dashboard')}}" class="nav-link" data-key="t-horizontal">Cancle Booking</a>
+                                <a href="{{route('coupleRejected_dashboard')}}" class="nav-link" data-key="t-horizontal">Rejected</a>
                             </li>
                         </ul>
                     </div>
                 </li>
-
-
+                <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                            <i class="ri-layout-3-line"></i>
+                            <span data-key="t-layouts">Group Entry</span>
+                        </a>
+                   
+                    <div class="collapse menu-dropdown" id="sidebarLayouts">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{route('dashboardGroup')}}" class="nav-link" data-key="t-horizontal">Booking</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('groupApproved_dashboard')}}" class="nav-link" data-key="t-horizontal">Approved</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('groupRejected_dashboard')}}" class="nav-link" data-key="t-horizontal">Rejected</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                            <i class="ri-layout-3-line"></i>
+                            <span data-key="t-layouts">Report</span>
+                        </a>
+                   
+                    <div class="collapse menu-dropdown" id="sidebarLayouts">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                            <a href="" class="nav-link" data-key="t-horizontal">Couple Entry Report</a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="" class="nav-link" data-key="t-horizontal">Group Entry Report</a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                </li>
+            @endif
                 @canany(['users.view', 'roles.view'])
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarLayouts" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">

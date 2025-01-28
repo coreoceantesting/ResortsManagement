@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>{{ config('app.name') }} | Sign In</title>
+    <title>Next Holiday | Sign In</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -47,7 +47,7 @@
                                     <div class="p-lg-5 p-4">
                                         <div>
                                             <h5 class="text-primary">Welcome Back !</h5>
-                                            <p class="text-muted">Sign in to continue to {{ config('app.name') }}.</p>
+                                            <p class="text-muted">Sign in to continue to Next Holiday.</p>
                                         </div>
 
                                         <div class="mt-4">
@@ -97,7 +97,7 @@
                                         </div>
 
                                         <div class="mt-5 text-center">
-                                            <p class="mb-0">Don't have an account ? <a href="{{route('register')}}"
+                                            <p class="mb-0">Don't have an account ? <a href="#"
                                                     class="fw-semibold text-primary text-decoration-underline">
                                                     Signup</a> </p>
                                         </div>
@@ -118,7 +118,7 @@
                             <p class="mb-0">&copy;
                                 <script>
                                 document.write(new Date().getFullYear())
-                                </script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+                                </script> Next Holiday  <i class="mdi mdi-heart text-danger"></i> 
                             </p>
                         </div>
                     </div>

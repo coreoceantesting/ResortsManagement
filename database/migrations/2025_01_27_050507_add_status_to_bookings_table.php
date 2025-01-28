@@ -1,4 +1,4 @@
- <?php
+<?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('remember_token')->nullable()->change();
+        Schema::table('booking', function (Blueprint $table) {
+            $table->integer('status')->default(0);
+
         });
     }
 
@@ -21,8 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('remember_token')->nullable(false)->change();
+        Schema::table('booking', function (Blueprint $table) {
+            //
         });
     }
 };

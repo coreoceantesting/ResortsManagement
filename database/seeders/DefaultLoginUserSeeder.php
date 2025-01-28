@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -22,7 +23,7 @@ class DefaultLoginUserSeeder extends Seeder
         $permissions = Permission::pluck('id','id')->all();
         $superAdminRole->syncPermissions($permissions);
 
-        $user = User::updateOrCreate([
+        $user = Admin::updateOrCreate([
             'email' => 'superadmin@gmail.com'
         ],[
             'name' => 'Super Admin',
@@ -39,7 +40,7 @@ class DefaultLoginUserSeeder extends Seeder
         $permissions = Permission::pluck('id','id')->all();
         $adminRole->syncPermissions($permissions);
 
-        $user = User::updateOrCreate([
+        $user = Admin::updateOrCreate([
             'email' => 'admin@gmail.com'
         ],[
             'name' => 'Admin',

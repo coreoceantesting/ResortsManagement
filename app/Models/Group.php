@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Group extends Model
 {
     use HasFactory;
+    protected $table ='group';
     protected $fillable = [
+        'customername',
         'booking_id',
+        'booking_date',
         'firstname',
         'lastname',
         'mobile',
@@ -17,9 +20,12 @@ class Customer extends Model
         'document',
     ];
 
-    // Define the inverse relationship with Booking
-    public function booking()
+    public function members()
     {
-        return $this->belongsTo(Booking::class);
+        return $this->hasMany(Group::class);
+    }
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 }

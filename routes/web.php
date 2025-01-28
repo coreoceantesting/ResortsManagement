@@ -30,9 +30,6 @@ Route::middleware(['guest','PreventBackHistory'])->group(function()
 {
     Route::get('admin/login', [App\Http\Controllers\Admin\AuthController::class, 'showLogin'] )->name('login');
     Route::post('admin/login', [App\Http\Controllers\Admin\AuthController::class, 'login'])->name('signin');
-    Route::get('register', [App\Http\Controllers\Admin\AuthController::class, 'showRegister'] )->name('register');
-    Route::post('register', [App\Http\Controllers\Admin\AuthController::class, 'register'])->name('signup');
-
     // Routes for Forget Password
 Route::get('forget-password', [App\Http\Controllers\Admin\AuthController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [App\Http\Controllers\Admin\AuthController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
@@ -41,14 +38,25 @@ Route::post('reset-password', [App\Http\Controllers\Admin\AuthController::class,
 
 });    
 
-// Authenticated admins
+//couple
+Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+Route::get('dashboard/Couple', [App\Http\Controllers\Admin\BookingController::class, 'bookingCoupleIndex'])->name('dashboardCouple');
+Route::get('coupleApproved_dashboard', [App\Http\Controllers\Admin\BookingController::class, 'coupleApprovedIndex'])->name('coupleApproved_dashboard');
+Route::get('coupleRejected_dashboard', [App\Http\Controllers\Admin\BookingController::class, 'coupleRejectedIndex'])->name('coupleRejected_dashboard');
+Route::post('/couple/approve/{id}', [App\Http\Controllers\Admin\BookingController::class, 'coupleApproveBooking'])->name('couple.approve');
+Route::post('/couple/reject/{id}', [BookingController::class, 'rejectBookingCouple'])->name('couplebooking.reject');
+Route::get('/admin/booking/view-couple/{id}', [BookingController::class, 'viewCouple'])->name('booking.viewCouple');
 
-Route::get('dashboard/Couple', [App\Http\Controllers\Admin\BookingController::class, 'bookingCouplePendingIndex'])->name('dashboard');
-Route::get('dashboard/Group', [App\Http\Controllers\Admin\BookingController::class, 'bookingGroupPendingIndex'])->name('dashboardGroup');
-Route::get('bookingApproved_dashboard', [App\Http\Controllers\Admin\BookingController::class, 'bookingApprovedIndex'])->name('bookingApproved_dashboard');
-Route::get('bookingRejected_dashboard', [App\Http\Controllers\Admin\BookingController::class, 'bookingRejectedIndex'])->name('bookingRejected_dashboard');
-Route::post('/booking/approve/{id}', [BookingController::class, 'approveBooking'])->name('booking.approve');
-Route::post('/booking/reject/{id}', [BookingController::class, 'rejectBooking'])->name('booking.reject');
+
+// group
+Route::get('dashboard/Group', [App\Http\Controllers\Admin\BookingController::class, 'bookingGroupIndex'])->name('dashboardGroup');
+Route::get('groupApproved_dashboard', [App\Http\Controllers\Admin\BookingController::class, 'groupApprovedIndex'])->name('groupApproved_dashboard');
+Route::get('groupRejected_dashboard', [App\Http\Controllers\Admin\BookingController::class, 'groupRejectedIndex'])->name('groupRejected_dashboard');
+Route::post('/group/approve/{id}', [BookingController::class, 'groupApproveBooking'])->name('group.approve');
+Route::post('/group/reject/{id}', [BookingController::class, 'rejectBookingGroup'])->name('groupbooking.reject');
+Route::get('/admin/booking/view-group/{id}', [BookingController::class, 'viewGroup'])->name('booking.viewGroup');
+
+
 Route::post('logout', [App\Http\Controllers\Admin\AuthController::class, 'Logout'])->name('logout');
  
 
