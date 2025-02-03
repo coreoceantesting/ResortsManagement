@@ -92,7 +92,6 @@
                                         <option value="50">50</option>
                                     </select>
                                 </div>
-
 <!-------------------------------- Add More Start ---------------------------->
                     <div class="panel panel-footer pt-3 mt-3">
                         <table class="table table-responsive table-bordered" id="dynamicAddRemove">
@@ -125,27 +124,26 @@
                                         <td><input type="text" name="lname[]" class="form-control" multiple="" id="lname" placeholder=" Enter Last Name"></td>
                                         <td><input type="text" name="mobile[]" class="form-control" multiple="" id="mobile" placeholder=" Enter Mobile"  minlength="10" maxlength="10"></td>
                                         <td>
-                                            <select class="js-example-basic-single form-control" name="gender[]">
+                                             <select class="js-example-basic-single form-control" name="gender[]">
                                                 <option value="">Select Gender</option>                         
                                                 <option value="1">Female</option>
                                                 <option value="2">Male</option>      
-                                            </select>
+                                             </select>
                                         </td>
                                         <td>
                                             <input type="file" name="document[]" class="form-control" multiple="" id="document">
                                             <span class="text-danger is-invalid name_err"></span>
                                         </td>
-                                      
                                     </tr>
                             </tbody>
                         </table>
-                    </div><br>
+                     </div><br>
                             <!-------------------------------- End -------------------------------------->
 
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary" id="addSubmit">Submit</button>
-                            <button type="reset" class="btn btn-warning">Reset</button>
+                            <button type="submit" class="btn btn-primary mb-3" id="addSubmit">Submit</button>
+                            <button type="reset" class="btn btn-warning mb-3">Reset</button>
                         </div>
                     </form>
                     </div>
@@ -155,6 +153,7 @@
     </div>
 
 </x-admin.layout>
+
 
 {{-- Add --}}
 <script>

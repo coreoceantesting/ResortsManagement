@@ -65,6 +65,9 @@
                                     </table>
                                 </div><br>
                             </div>
+                            <div class="card-footer">
+                            <button type="button" class="btn btn-secondary" id="backButton">Back</button>
+                        </div>
                         </form>
                     </div>
                 </div>

@@ -82,9 +82,9 @@
 
 
 
-    <button onclick="topFunction()" class="btn btn-primary btn-icon" id="back-to-top">
-        <i class="ri-arrow-up-line"></i>
-    </button>
+    <button onclick="topFunction()" class="btn btn-primary btn-icon" id="back-to-top" style="display: none;width: 10%;">
+    <i class="ri-arrow-up-line"></i>
+</button>
 
 
 
@@ -126,7 +126,21 @@
     <script src="{{ asset('admin/js/pages/datatables.init.js') }}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </body>
+<style>
+    /* For mobile view (less than 768px wide) */
+    @media (max-width: 768px) {
+        #back-to-top {
+            display: block;
+        }
+    }
 
+    /* For larger screens (desktop view) */
+    @media (min-width: 769px) {
+        #back-to-top {
+            display: none;
+        }
+    }
+</style>
 {{-- AddForm n EditForm Open/Close jquery --}}
 <script>
     $(document).ready(function() {

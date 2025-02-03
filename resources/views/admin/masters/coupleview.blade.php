@@ -29,14 +29,15 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <label class="col-form-label" for="count">Couple Count</label>
-                                    <select class="form-select" id="ccount" name="couplecount" disabled>
-                                        <option value="1" {{ $booking->couplecount == 1 ? 'selected' : '' }}>1</option>
-                                        <option value="2" {{ $booking->couplecount == 2 ? 'selected' : '' }}>2</option>
-                                        <option value="3" {{ $booking->couplecount == 3 ? 'selected' : '' }}>3</option>
-                                        <option value="4" {{ $booking->couplecount == 4 ? 'selected' : '' }}>4</option>
-                                        <option value="5" {{ $booking->couplecount == 5 ? 'selected' : '' }}>5</option>
+                                    <label class="col-form-label" for="ccount">Couple Count</label>
+                                    <select class="form-select" id="ccount" name="couplecount">
+                                    <option value="1" {{ $booking->couplecount == 1 ? 'selected' : '' }}>1</option>
+                                    <option value="2" {{ $booking->couplecount == 2 ? 'selected' : '' }}>2</option>
+                                    <option value="3" {{ $booking->couplecount == 3 ? 'selected' : '' }}>3</option>
+                                    <option value="4" {{ $booking->couplecount == 4 ? 'selected' : '' }}>4</option>
+                                    <option value="5" {{ $booking->couplecount == 5 ? 'selected' : '' }}>5</option>
                                     </select>
+                                    <p id="selectedCount">Selected Couple Count: {{ $booking->couplecount }}</p>
                                 </div>
                             </div>
 
@@ -101,7 +102,19 @@
     cursor: not-allowed;
     }
     </style>
+<script>
+  // Initial setup to display the current value
+  document.addEventListener('DOMContentLoaded', function() {
+        const selectedValue = document.getElementById('ccount').value;
+        document.getElementById('selectedCount').textContent = 'Selected Couple Count: ' + selectedValue;
+    });
 
+    // Update the selected value dynamically when the dropdown value changes
+    document.getElementById('ccount').addEventListener('change', function() {
+        var selectedValue = this.value;
+        document.getElementById('selectedCount').textContent = 'Selected Couple Count: ' + selectedValue;
+    });
+</script>
     <script>
         document.getElementById('backButton').addEventListener('click', function() {
             window.history.back();
