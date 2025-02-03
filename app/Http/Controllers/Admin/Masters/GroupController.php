@@ -10,22 +10,23 @@ use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
-   
+
     public function index()
     {
        return view('admin.masters.group')->with('showSidebar', false);
     }
 
-  
+
     public function create()
     {
-       
+
     }
 
-   
+
     public function storeGroup(Request $request)
     {
         $groupmemberCount = $request->input('group_member');
+
         // Validate the data
         $request->validate([
            'bdate' => 'required|date',
@@ -35,8 +36,7 @@ class GroupController extends Controller
             'lname' => 'required|array|min:' . ($groupmemberCount ),
             'mobile' => 'required|array|min:' . ($groupmemberCount ),
             'gender' => 'required|array|min:' . ($groupmemberCount ),
-           'document' => ['required','array','min:2','max:' . ($groupmemberCount > 2 ? 2 : $groupmemberCount)],
-           
+           'document' => ['required','array','min:'.($groupmemberCount > 2 ? 2 : $groupmemberCount),'max:' . ($groupmemberCount > 2 ? 2 : $groupmemberCount)],
         ]);
         $messages = [
             'customername.required' => 'Customer name is required.',
@@ -64,11 +64,11 @@ class GroupController extends Controller
             $customer->lastname = $request->lname[$index];
             $customer->mobile = $request->mobile[$index];
             $customer->gender = $request->gender[$index];
-            
+
             if ($request->hasFile('document.' . $index)) {
                 $customer->document = $request->file('document.' . $index)->store('documents');
             }
-            
+
             $customer->booking_id = $booking->id;
             $customer->save();
         }
@@ -77,6 +77,6 @@ class GroupController extends Controller
         return response()->json(['success' => 'Group booking successfully created']);
     }
 
-   
-   
+
+
 }

@@ -99,7 +99,7 @@
 
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary" id="addSubmit">Submit</button>
+                            <button type="submit" class="btn btn-primary mb-3 mb-md-0" id="addSubmit">Submit</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
                         </div>
                     </form>

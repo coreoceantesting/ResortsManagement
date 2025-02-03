@@ -124,11 +124,11 @@
                                         <td><input type="text" name="lname[]" class="form-control" multiple="" id="lname" placeholder=" Enter Last Name"></td>
                                         <td><input type="text" name="mobile[]" class="form-control" multiple="" id="mobile" placeholder=" Enter Mobile"  minlength="10" maxlength="10"></td>
                                         <td>
-                                             <select class="js-example-basic-single form-control" name="gender[]">
+                                            <select class="js-example-basic-single form-control" name="gender[]">
                                                 <option value="">Select Gender</option>
                                                 <option value="1">Female</option>
                                                 <option value="2">Male</option>
-                                             </select>
+                                            </select>
                                         </td>
                                         <td>
                                             <input type="file" name="document[]" class="form-control" multiple="" id="document">
@@ -142,7 +142,7 @@
 
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary" id="addSubmit">Submit</button>
+                            <button type="submit" class="btn btn-primary mb-3 mb-md-0" id="addSubmit">Submit</button>
                             <button type="reset" class="btn btn-warning mb-3">Reset</button>
                         </div>
                     </form>
