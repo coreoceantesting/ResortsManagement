@@ -93,7 +93,9 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div><br>
+                            </div>
+
+                            <br>
 
                         </div>
                         <div class="card-footer">
