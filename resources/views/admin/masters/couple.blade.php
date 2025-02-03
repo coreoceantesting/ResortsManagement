@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="bdate">Booking Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="booking" name="bdate" type="date" min="">
+                                    <input class="form-control" id="booking" name="bdate" type="date" min="{{ now()->toDateString() }}">
                                     <span class="text-danger is-invalid bdate_err"></span>
                                 </div>
 
