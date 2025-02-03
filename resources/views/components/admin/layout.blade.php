@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.8.0/dist/css/coreui.min.css" rel="stylesheet" integrity="sha384-hbx3WW3VEnpFGfGaaDgwb9GZ5DxxQebbCzE/MHHkkH7RbRhEoI3aXxDAFxNnTGnt" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui-pro@5.8.0/dist/js/coreui.bundle.min.js" integrity="sha384-aUfnS+hkMBjwlmClHswy/heTcxNQGkwv2aZATR+O6N9AfSs9Q3a2BJZSlrMeg2sS" crossorigin="anonymous"></script>
-    
+
     @stack('styles')
 </head>
 
@@ -51,7 +51,7 @@
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item">
-                                            <a href="{{ route('home') }}">Home</a>
+                                            <a href="{{ auth()->check() ? route('home') : route('welcome') }}">Home</a>
                                         </li>
                                         <li class="breadcrumb-item {{ isset($subheading) ? '' : 'active' }}">
                                             {{ $heading }}
@@ -246,7 +246,7 @@
         tbody tr {
             display: block;
             margin-bottom: 10px;
-            border: 1px solid #ddd; 
+            border: 1px solid #ddd;
         }
 
         tbody tr td {
