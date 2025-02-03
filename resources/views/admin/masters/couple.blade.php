@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="bdate">Booking Date <span class="text-danger">*</span></label>
-                                    <input class="form-control" id="booking" name="bdate" type="date" min="{{ now()->toDateString() }}" value="" onfocus="this.showPicker()" placeholder="dd-mm-yy">
+                                    <input class="form-control" id="booking" name="bdate" type="date" min="{{ now()->toDateString() }}" value="{{ now()->toDateString() }}" onfocus="this.showPicker()" placeholder="dd-mm-yy">
                                     <span class="text-danger is-invalid bdate_err"></span>
                                 </div>
 
@@ -99,7 +99,7 @@
 
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary mb-3" id="addSubmit">Submit</button>
+                            <button type="submit" class="btn btn-primary" id="addSubmit">Submit</button>
                             <button type="reset" class="btn btn-warning">Reset</button>
                         </div>
                     </form>
