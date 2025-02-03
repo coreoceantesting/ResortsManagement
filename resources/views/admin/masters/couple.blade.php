@@ -3,9 +3,9 @@
     <x-slot name="heading">Couple</x-slot>
     {{-- <x-slot name="subheading">Test</x-slot> --}}
 
-    
+
         <!-- Add Form -->
-      
+
  <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -26,13 +26,13 @@
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="bdate">Booking Date <span class="text-danger">*</span></label>
                                     <input class="form-control" id="booking" name="bdate" type="date" min="">
-                                    <span class="text-danger is-invalid name_err"></span>
+                                    <span class="text-danger is-invalid bdate_err"></span>
                                 </div>
-                               
+
                                 <div class="col-md-4">
                                     <label class="col-form-label" for="count">Couple Count</label>
                                     <select class="form-select" id="ccount" name="couplecount">
-                                        <option selected>select Couple Count</option>
+                                        <option selected>Select Couples Count</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -48,48 +48,48 @@
                                         <tr >
                                             <th>First Name</th>
                                             <th>Last Name</th>
-                                            <th>Mobile</th>                                          
-                                            <th>Gender</th>  
+                                            <th>Mobile</th>
+                                            <th>Gender</th>
                                             <th>Adhar Card </th>
                                         </tr>
                                     </thead>
                                     <tbody id="addMore">
                                         <tr>
-                                            <td>   
+                                            <td>
                                                 <input type="text" name="fname[]" class="form-control" id="fname" placeholder="Enter First Name">
                                                 @if ($errors->has('fname'))
                                                     <span class="text-danger">{{ $errors->first('fname') }}</span>
                                                 @endif
                                             </td>
-                                            <td>   
+                                            <td>
                                                 <input type="text" name="lname[]" class="form-control" id="lname" placeholder="Enter Last Name">
                                                 @if ($errors->has('lname'))
                                                 <span class="text-danger">{{ $errors->first('lname') }}</span>
                                                 @endif
-                                            </td>   
-                                            <td>   
+                                            </td>
+                                            <td>
                                                 <input type="text" name="mobile[]" class="form-control" id="mobile"  minlength="10" maxlength="10" placeholder="Enter Mobile">
                                                 @if ($errors->has('mobile'))
                                                 <span class="text-danger">{{ $errors->first('mobile') }}</span>
                                                 @endif
-                                            </td>    
+                                            </td>
                                             <td>
                                                 <select class="js-example-basic-single form-select" name="gender[]" id="gender">
-                                                    <option value="">Select Gender</option>                         
+                                                    <option value="">Select Gender</option>
                                                     <option value="1">Female</option>
-                                                    <option value="2">Male</option>      
-                                                </select>  
+                                                    <option value="2">Male</option>
+                                                </select>
                                                 @if ($errors->has('gender'))
                                                     <span class="text-danger">{{ $errors->first('gender') }}</span>
                                                 @endif
-                                            </td>    
+                                            </td>
                                             <td>
                                                 <input type="file" name="document[]" class="form-control" id="document">
                                                 @if ($errors->has('document'))
                                                     <span class="text-danger">{{ $errors->first('document') }}</span>
                                                 @endif
-                                            </td>    
-                                            
+                                            </td>
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -124,8 +124,8 @@
                 $('#ccount').on('change', function() {
                     var coupleCount = $(this).val();
                     if (coupleCount && coupleCount > 0) {
-                        $('#addMore').empty();    
-                        for (var i = 0; i < coupleCount * 2; i++) { 
+                        $('#addMore').empty();
+                        for (var i = 0; i < coupleCount * 2; i++) {
                             addMoreForm();
                         }
                     }
@@ -153,10 +153,10 @@
                 $("#addForm").submit(function(e) {
                     e.preventDefault();
                     $("#addSubmit").prop('disabled', true);
-                
+
                     var coupleCount = $('#ccount').val();
                     var totalRows = $('#addMore tr').length;
-                    
+
                     if (coupleCount * 2 !== totalRows) {
                         swal("Validation Error!", "Please fill in the required number of rows.", "error");
                         $("#addSubmit").prop('disabled', false);
@@ -199,10 +199,10 @@
             document.addEventListener("DOMContentLoaded", function() {
             const today = new Date();
             const year = today.getFullYear();
-            const month = String(today.getMonth() + 1).padStart(2, '0'); 
-            const day = String(today.getDate()).padStart(2, '0'); 
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
             const formattedDate = `${year}-${month}-${day}`;
-        
+
             document.getElementById('booking').setAttribute('min', formattedDate);
             });
     </script>
@@ -211,7 +211,7 @@
             $(document).ready(function() {
             $(".addMoreForm").click(function() {
                 var newRow = $('#addMore tr:first').clone();
-                newRow.find('input').val(''); 
+                newRow.find('input').val('');
                 $('#addMore').append(newRow);
             });
 
@@ -222,7 +222,7 @@
     <script>
         $(document).ready(function() {
             $(document).ajaxStart(function() {
-                
+
                 $('#pageLoader').show(); // Show loader during Ajax request
             });
 
