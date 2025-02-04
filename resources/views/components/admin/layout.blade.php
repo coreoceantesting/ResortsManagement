@@ -82,10 +82,6 @@
 
 
 
-    <button onclick="topFunction()" class="btn btn-primary btn-icon" id="back-to-top" style="display: none;width: 10%;">
-    <i class="ri-arrow-up-line"></i>
-</button>
-
 
 
     <div id="preloader">
