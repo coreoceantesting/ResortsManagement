@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Validator;
 
 class CoupleController extends Controller
 {
-    
+
     public function index()
     {
         return view('admin.masters.couple');
     }
 
-   
+
     public function create()
     {
         //
@@ -28,9 +28,9 @@ class CoupleController extends Controller
     public function store(Request $request)
     {
         $coupleCount = $request->input('couplecount');
-    
-        // Validate couple count and ensure the correct number of rows are submitted
+
         $rules = [
+            'bdate' => 'required|date|after_or_equal:today',
             'couplecount' => 'required|integer|min:1|max:5',
             'customername' => 'required',
             'fname' => 'required|array|min:' . ($coupleCount),
@@ -40,9 +40,11 @@ class CoupleController extends Controller
             'document' => 'required|array|min:' . ($coupleCount),
             'document.*' => 'mimes:jpg,jpeg,pdf|max:10240',
         ];
-    
+
         $messages = [
             'customername.required' => 'Customer name is required.',
+            'bdate.required' => 'Booking date is required.',
+            'bdate.after_or_equal' => 'Booking date must be future date.',
             'fname.*.required' => 'First name is required for each entry.',
             'lname.*.required' => 'Last name is required for each entry.',
             'mobile.*.required' => 'Mobile number is required for each entry.',
@@ -50,16 +52,16 @@ class CoupleController extends Controller
             'gender.*.required' => 'Gender is required for each entry.',
             'document.*.required' => 'Adhar card is required for each entry.',
         ];
-    
+
         $validated = $request->validate($rules, $messages);
-    
+
         // Store the booking data
         $booking = Booking::create([
             'booking_date' => $request->bdate,
             'couple_count' => $request->couplecount,
             'customername' => $request->customername,
         ]);
-    
+
         // Store each customer
         foreach ($request->fname as $index => $firstName) {
             $customer = new Couple();
@@ -69,37 +71,37 @@ class CoupleController extends Controller
             $customer->lastname = $request->lname[$index];
             $customer->mobile = $request->mobile[$index];
             $customer->gender = $request->gender[$index];
-    
+
             if ($request->hasFile('document.' . $index)) {
                 $customer->document = $request->file('document.' . $index)->store('documents');
             }
-    
+
             $customer->booking_id = $booking->id;
             $customer->save();
         }
-    
+
         return response()->json(['success' => 'Couple booking successfully created']);
     }
-    
-   
+
+
     public function show(string $id)
     {
         //
     }
 
-    
+
     public function edit(string $id)
     {
         //
     }
 
-    
+
     public function update(Request $request, string $id)
     {
         //
     }
 
-   
+
     public function destroy(string $id)
     {
         //

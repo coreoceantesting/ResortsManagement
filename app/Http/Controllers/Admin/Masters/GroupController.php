@@ -13,14 +13,11 @@ class GroupController extends Controller
 
     public function index()
     {
-       return view('admin.masters.group')->with('showSidebar', false);
+        return view('admin.masters.group')->with('showSidebar', false);
     }
 
 
-    public function create()
-    {
-
-    }
+    public function create() {}
 
 
     public function storeGroup(Request $request)
@@ -28,16 +25,17 @@ class GroupController extends Controller
         $groupmemberCount = $request->input('group_member');
 
         $request->validate([
-           'bdate' => 'required|date',
+            'bdate' => 'required|date|after_or_equal:today',
             'group_member' => 'required|integer|min:1|max:10',
             'customername' => 'required',
-            'fname' => 'required|array|min:' . ($groupmemberCount ),
-            'lname' => 'required|array|min:' . ($groupmemberCount ),
-            'mobile' => 'required|array|min:' . ($groupmemberCount ),
-            'gender' => 'required|array|min:' . ($groupmemberCount ),
-           'document' => ['required','array','min:'.($groupmemberCount > 2 ? 2 : $groupmemberCount),'max:' . ($groupmemberCount > 2 ? 2 : $groupmemberCount)],
-        ]);
-        $messages = [
+            'fname' => 'required|array|min:' . ($groupmemberCount),
+            'lname' => 'required|array|min:' . ($groupmemberCount),
+            'mobile' => 'required|array|min:' . ($groupmemberCount),
+            'gender' => 'required|array|min:' . ($groupmemberCount),
+            'document' => ['required', 'array', 'min:' . ($groupmemberCount > 2 ? 2 : $groupmemberCount), 'max:' . ($groupmemberCount > 2 ? 2 : $groupmemberCount)],
+        ], [
+            'bdate.required' => 'Booking date is required.',
+            'bdate.after_or_equal' => 'Booking date must be future date.',
             'customername.required' => 'Customer name is required.',
             'fname.*.required' => 'First name is required for each entry.',
             'lname.*.required' => 'Last name is required for each entry.',
@@ -45,7 +43,7 @@ class GroupController extends Controller
             'mobile.digits' => 'The mobile number must be exactly 10 digits.',
             'gender.*.required' => 'Gender is required for each entry.',
             'document.*.required' => 'Adhar card is required for each entry.',
-        ];
+        ]);
 
         // Store the booking data
         $booking = Booking::create([
@@ -75,7 +73,4 @@ class GroupController extends Controller
 
         return response()->json(['success' => 'Group booking successfully created']);
     }
-
-
-
 }
