@@ -13,34 +13,32 @@ class DashboardController extends Controller
 
     public function index()
     {
-        
-        // Count approved couples
         $approvedCouple = Booking::where('status', '1')
-                        ->whereNotNull('couple_count')
-                        ->count();
+                            ->whereNotNull('couple_count')
+                            ->sum('couple_count');
 
-        // Count rejected couples
         $rejectedCouple = Booking::where('status', '2')
-                            ->whereNotNull('couple_count') 
-                            ->count();
+                            ->whereNotNull('couple_count')
+                            ->sum('couple_count');
 
-        // Count approved groups
         $approvedGroup = Booking::where('status', '1')
-                        ->whereNotNull('group_member') 
-                        ->count();
+                            ->whereNotNull('group_member')
+                            ->count();
+        $approvedGroupPeople = Booking::where('status', '1')
+                            ->whereNotNull('group_member')
+                            ->sum('group_member');
 
-        // Count rejected groups
         $rejectedGroup = Booking::where('status', '2')
-                        ->whereNotNull('group_member')
-                        ->count();
+                            ->whereNotNull('group_member')
+                            ->count();
+        $rejectedGroupPeople = Booking::where('status', '2')
+                            ->whereNotNull('group_member')
+                            ->sum('group_member');
 
-        // Count total people visited (couples + group members)
         $totalPeopleVisited = Couple::count() + Group::count();
 
-        // Count male entries
         $maleEntry = Couple::where('gender', '2')->count() + Group::where('gender', '2')->count();
 
-        // Count female entries
         $femaleEntry = Couple::where('gender', '1')->count() + Group::where('gender', '1')->count();
 
         return view('admin.dashboard', compact(
@@ -50,9 +48,11 @@ class DashboardController extends Controller
             'rejectedGroup',
             'totalPeopleVisited',
             'maleEntry',
-            'femaleEntry'
+            'femaleEntry',
+            'approvedGroupPeople',
+            'rejectedGroupPeople'
         ));
-    
+
     }
 
     public function changeThemeMode()

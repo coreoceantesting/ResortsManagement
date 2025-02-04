@@ -27,7 +27,6 @@ class GroupController extends Controller
     {
         $groupmemberCount = $request->input('group_member');
 
-        // Validate the data
         $request->validate([
            'bdate' => 'required|date',
             'group_member' => 'required|integer|min:1|max:10',
@@ -58,7 +57,7 @@ class GroupController extends Controller
         // Store the group data
         foreach ($request->fname as $index => $firstName) {
             $customer = new Group();
-            $customer->booking_date = $request->bdate; // Corrected for the first booking_date
+            $customer->booking_date = $request->bdate;
             $customer->customername = $request->customername;
             $customer->firstname = $request->fname[$index];
             $customer->lastname = $request->lname[$index];
