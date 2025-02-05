@@ -172,8 +172,37 @@
 
 {{-- Add --}}
 <script>
+    function validateDuplicateNumbers(e) {
+        let mobiles = document.getElementsByName('mobile[]');
+        let values = new Set();
+        let duplicateFound = false;
+
+        for (let i = 0; i < mobiles.length; i++) {
+            let mobileValue = mobiles[i].value.trim();
+
+            if (mobileValue !== '') {
+                if (values.has(mobileValue)) {
+                    duplicateFound = true;
+                    break;
+                }
+                values.add(mobileValue);
+            }
+        }
+
+        if (duplicateFound) {
+            e.preventDefault();
+            swal("Validation Error!", "Duplicate mobile numbers are not allowed.", "error");
+        }
+
+        return duplicateFound;
+    }
+
     $("#addForm").submit(function(e) {
         e.preventDefault();
+
+        if(validateDuplicateNumbers(e))
+            return false;
+
         $("#addSubmit").prop('disabled', true);
 
         var formdata = new FormData(this);
