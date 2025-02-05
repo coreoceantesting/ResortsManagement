@@ -130,7 +130,9 @@
  <script>
     $(document).ready(function() {
         // Approve booking
-        $('button[id^="approve-btn-"]').click(function() {
+        $('button[id^="approve-btn-"]').click(function(e) {
+            e.preventDefault();
+            
             var bookingId = $(this).data('id');
             $.ajax({
                 url: '/group/approve/' + bookingId,
@@ -150,7 +152,9 @@
         });
 
         // Reject booking
-        $('button[id^="reject-btn-"]').click(function() {
+        $('button[id^="reject-btn-"]').click(function(e) {
+            e.preventDefault();
+            
             var bookingId = $(this).data('id');
             $.ajax({
                 url: '/group/reject/' + bookingId,
