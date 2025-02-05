@@ -51,7 +51,7 @@
                                             <option value="4" {{ $booking->couple_count == 4 ? 'selected' : '' }}>4</option>
                                             <option value="5" {{ $booking->couple_count == 5 ? 'selected' : '' }}>5</option>
                                         </select>
-                                        <p id="selectedCount">Selected Couple Count: {{ $booking->couplecount }}</p>
+                                        {{-- <p id="selectedCount">Selected Couple Count: {{ $booking->couplecount }}</p> --}}
                                     </div>
                                 </div>
 

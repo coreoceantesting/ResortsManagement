@@ -45,7 +45,7 @@
                         aria-haspopup="true" aria-expanded="false">
                         <span class="d-flex align-items-center">
                             <img class="rounded-circle header-profile-user"
-                                src="{{ asset('admin/images/users/avatar-1.jpg') }}" alt="Header Avatar" />
+                                src="{{ asset('admin/images/users/avatar.png') }}" alt="Header Avatar" />
                             <span class="text-start ms-xl-2">
                                 <span
                                     class="d-none d-xl-inline-block ms-1 fw-semibold user-name-text">{{ ucfirst(auth()?->user()?->name) }}</span>
