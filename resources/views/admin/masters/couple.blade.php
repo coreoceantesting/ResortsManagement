@@ -84,7 +84,7 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <input type="file" name="document[]" class="form-control" id="document">
+                                                    <input type="file" name="document[]" required class="form-control" id="document">
                                                     @if ($errors->has('document'))
                                                         <span class="text-danger">{{ $errors->first('document') }}</span>
                                                     @endif
@@ -146,9 +146,12 @@
                 '<option value="">Select Gender</option>' +
                 '<option value="1">Female</option>' +
                 '<option value="2">Male</option>' +
-                '</select></td>' +
-                '<td><input type="file" name="document[]" class="form-control" required></td>' +
-                '</tr>';
+                '</select></td>';
+            
+            if(rowId < 3)
+                tr += '<td><input type="file" required name="document[]" class="form-control"></td>';
+            
+            tr +='</tr>';
 
             $('#addMore').append(tr);
             rowId++;
