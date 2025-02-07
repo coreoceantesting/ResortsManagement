@@ -30,9 +30,9 @@
                         <li class="nav-item">
                             <a href="{{ route('farmhouse.index') }}" class="nav-link {{ request()->routeIs('farmhouse.index') ? 'active' : '' }}" data-key="t-horizontal">Farmhouse</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a href="{{route('Group')}}" class="nav-link" data-key="t-horizontal">Group</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </li>
