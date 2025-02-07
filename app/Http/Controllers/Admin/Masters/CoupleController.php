@@ -7,6 +7,7 @@ use App\Http\Requests\CustomerRequest;
 use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Couple;
+use App\Models\Frarmhouse;
 use App\Models\Customer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,13 @@ class CoupleController extends Controller
 
     public function index()
     {
-        return view('admin.masters.couple');
+        $farmhouse = Frarmhouse::whereNull('deleted_at')->get();
+
+        // return view('admin.masters.couple');
+
+        return view('admin.masters.couple')->with([
+            'farmhouse' => $farmhouse
+        ]);
     }
 
 

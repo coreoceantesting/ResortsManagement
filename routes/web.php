@@ -84,6 +84,15 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
     Route::get('groupcustomer/view/{id}', [BookingController::class, 'viewGroup'])->name('groupcustomer.view');
 });
 
+//Masters
+
+// Route::get('farmhouse', [App\Http\Controllers\Admin\Masters\FarmhouseController::class, 'index'])->name('farmhouse');
+
+
+Route::resource('farmhouse', App\Http\Controllers\Admin\Masters\FarmhouseController::class);
+// Route::get('couple', [App\Http\Controllers\Admin\Masters\CoupleController::class, 'index'])->name('couple');
+Route::get('Group', [App\Http\Controllers\Admin\Masters\GroupController::class, 'index'])->name('Group');
+
 
 
 // Group resource routes

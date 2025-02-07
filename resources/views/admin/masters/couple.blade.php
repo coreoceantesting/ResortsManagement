@@ -19,8 +19,14 @@
                             <div class="card-body">
                                 <div class="mb-3 row">
                                     <div class="col-md-4">
-                                        <label class="col-form-label" for="customername">Customer Name <span class="text-danger">*</span></label>
-                                        <input class="form-control" id="cname" name="customername" type="text" min="" placeholder="Enter Customer Name">
+                                        <label class="col-form-label" for="customername">Farm House Name<span class="text-danger">*</span></label>
+                                        {{-- <input class="form-control" id="cname" name="customername" type="text" min="" placeholder="Enter Farm House Name"> --}}
+                                            <select class="form-control" name="customername" id="cname">
+                                                <option value="">--Select Farm House Name--</option>
+                                                @foreach ($farmhouse as $farm)
+                                                    <option value="{{$farm->id}}">{{$farm->farmhouse_name}}</option>
+                                                @endforeach
+                                            </select>
                                         <span class="text-danger is-invalid name_err"></span>
                                     </div>
                                     <div class="col-md-4">
@@ -147,10 +153,10 @@
                 '<option value="1">Female</option>' +
                 '<option value="2">Male</option>' +
                 '</select></td>';
-            
+
             if(rowId < 3)
                 tr += '<td><input type="file" required name="document[]" class="form-control"></td>';
-            
+
             tr +='</tr>';
 
             $('#addMore').append(tr);

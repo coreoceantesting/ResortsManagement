@@ -69,15 +69,15 @@
                                                 </div>
 
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="remember_me" name="remember_me">
-                                                    <label class="form-check-label" for="auth-remember-check">Remember
-                                                        me</label>
+                                                    {{-- <input class="form-check-input" type="checkbox" value="" id="remember_me" name="remember_me"> --}}
+                                                    {{-- <label class="form-check-label" for="auth-remember-check">Remember
+                                                        me</label> --}}
                                                 </div>
 
-                                                <div class="mt-5 text-center">
+                                                {{-- <div class="mt-5 text-center">
                                                     <a href="{{ route('forget.password.get') }}" class="fw-semibold text-primary text-decoration-underline">
                                                         Forget Password</a>
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="mt-4">
                                                     <button class="btn btn-primary w-100" type="submit" id="loginForm_submit">Sign In</button>
