@@ -88,6 +88,7 @@ class FarmhouseController extends Controller
             DB::beginTransaction();
              $input = $request->validated();
              DB::table('frarmhouses')->where('id', $id)->update($input);
+            
              DB::commit();
 
              return response()->json(['success' => 'Frarmhouses updated successfully!']);

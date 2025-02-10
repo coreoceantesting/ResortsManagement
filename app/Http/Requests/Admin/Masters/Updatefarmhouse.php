@@ -21,9 +21,12 @@ class Updatefarmhouse extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('farmhouse'); // Route se farmhouse ka ID le rahe hain
+
         return [
-            'farmhouse_name' => 'required|unique:frarmhouses,farmhouse_name',
-            'farm_location'=>'required'
+            'farmhouse_name' => "required|unique:frarmhouses,farmhouse_name,$id,id,deleted_at,NULL",
+            'farm_location' => 'required'
         ];
     }
 }
+
