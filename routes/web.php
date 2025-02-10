@@ -90,7 +90,7 @@ Route::middleware(['auth', 'PreventBackHistory'])->group(function () {
 
 
 Route::resource('farmhouse', App\Http\Controllers\Admin\Masters\FarmhouseController::class);
-
+//
 // Route::get('couple', [App\Http\Controllers\Admin\Masters\CoupleController::class, 'index'])->name('couple');
 Route::get('Group', [App\Http\Controllers\Admin\Masters\GroupController::class, 'index'])->name('Group');
 
